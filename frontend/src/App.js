@@ -13,7 +13,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const LOGO_URL =
-    "https://ludoaloserij.nl/wp-content/uploads/2023/11/Color-logo-no-background-1024x627.png";
+    "https://customer-assets.emergentagent.com/job_game-archive-11/artifacts/c1if9j2d_image.png";
 
 // ---------------- Hero (logo + slogan) ----------------
 
@@ -22,7 +22,7 @@ const LOGO_URL =
 const Hero = () => (
     <section
         id="top"
-        className="container-x max-w-4xl mx-auto pt-20 md:pt-28 pb-12 text-center"
+        className="container-x max-w-4xl mx-auto pt-12 md:pt-16 pb-8 text-center"
         data-testid="hero-section"
     >
         <div className="relative inline-block">
@@ -30,13 +30,13 @@ const Hero = () => (
             <div className="absolute -inset-12 rounded-full bg-[hsl(var(--primary))]/15 blur-3xl pointer-events-none" />
             <img
                 src={LOGO_URL}
-                alt="L.A. Technische Service"
-                className="relative h-52 md:h-64 lg:h-80 w-auto mx-auto"
+                alt="L.A. Technische Service — Alles met Techniek"
+                className="relative h-80 sm:h-[28rem] md:h-[32rem] lg:h-[36rem] w-auto mx-auto"
                 data-testid="hero-logo"
             />
         </div>
 
-        <div className="mt-12 flex items-center justify-center gap-4">
+        <div className="mt-6 flex items-center justify-center gap-4">
             <span className="accent-rule" />
             <span
                 className="text-base sm:text-lg md:text-xl font-semibold uppercase tracking-[0.28em]"
