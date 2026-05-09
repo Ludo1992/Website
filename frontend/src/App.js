@@ -14,6 +14,8 @@ import {
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`; // eslint-disable-line no-unused-vars
 
+const WEB3FORMS_KEY = "980e58f0-c82a-4bb0-b33e-d1004e92b977";
+
 const LOGO_URL =
     "https://ludoaloserij.nl/wp-content/uploads/2023/11/Color-logo-no-background-1024x627.png";
 
@@ -67,23 +69,47 @@ const Contact = () => {
     const submit = async (e) => {
         e.preventDefault();
         setStatus({ state: "loading", msg: "" });
+
+        // Use FormData to avoid CORS preflight issues with Web3Forms
+        const formData = new FormData();
+        formData.append("access_key", WEB3FORMS_KEY);
+        formData.append(
+            "subject",
+            "Nieuw contactbericht via ludoaloserij.nl"
+        );
+        formData.append(
+            "from_name",
+            "L.A. Technische Service — Contactformulier"
+        );
+        formData.append("name", form.name);
+        formData.append("email", form.email);
+        formData.append("onderwerp", form.subject);
+        formData.append("message", form.message);
+
         try {
-            await axios.post(`${API}/contact`, form);
-            setStatus({
-                state: "success",
-                msg: "Bericht verzonden — ik neem zo snel mogelijk contact op.",
+            const res = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData,
             });
-            setForm({ name: "", email: "", subject: "", message: "" });
+            const data = await res.json();
+            if (res.ok && data && data.success) {
+                setStatus({
+                    state: "success",
+                    msg: "Bericht verzonden — ik neem zo snel mogelijk contact op.",
+                });
+                setForm({ name: "", email: "", subject: "", message: "" });
+            } else {
+                setStatus({
+                    state: "error",
+                    msg:
+                        (data && data.message) ||
+                        "Er ging iets mis. Probeer het opnieuw.",
+                });
+            }
         } catch (err) {
-            const detail =
-                err?.response?.data?.detail ||
-                "Er ging iets mis. Probeer het opnieuw.";
             setStatus({
                 state: "error",
-                msg:
-                    typeof detail === "string"
-                        ? detail
-                        : "Controleer de ingevulde velden.",
+                msg: "Er ging iets mis. Probeer het opnieuw.",
             });
         }
     };
@@ -230,18 +256,6 @@ const Contact = () => {
                         </div>
                     )}
                 </form>
-            </div>
-
-            {/* Direct mail link below form */}
-            <div className="mt-6 text-center">
-                <a
-                    href="mailto:info@ludoaloserij.nl"
-                    className="inline-flex items-center gap-2 text-zinc-400 hover:text-[hsl(var(--primary))] transition-colors text-sm"
-                    data-testid="contact-direct-mail"
-                >
-                    <EnvelopeSimple size={16} weight="bold" />
-                    Of mail direct naar info@ludoaloserij.nl
-                </a>
             </div>
         </section>
     );
