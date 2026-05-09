@@ -17,21 +17,88 @@ const LOGO_URL =
 
 // ---------------- Hero (logo + slogan) ----------------
 
+// ---------------- Brand Mark (custom SVG: wrench + screwdriver crossed, gear below) ----------------
+
+const BrandMark = () => (
+    <div
+        className="relative inline-flex flex-col items-center"
+        data-testid="hero-brandmark"
+        aria-label="L.A. Technische Service icoon"
+    >
+        <div className="absolute -inset-8 rounded-full bg-[hsl(var(--primary))]/15 blur-3xl" />
+        <svg
+            viewBox="0 0 200 220"
+            xmlns="http://www.w3.org/2000/svg"
+            className="relative h-40 md:h-48 w-auto"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="6"
+            style={{ color: "#EE5A24" }}
+            aria-hidden="true"
+        >
+            {/* Wrench (top-left to bottom-right) */}
+            <g transform="rotate(-45 100 80)">
+                <path d="M40 70 L130 70" />
+                {/* Wrench head (open jaw) */}
+                <path d="M40 70 L20 60 L20 80 Z" fill="#EE5A24" />
+                <circle cx="20" cy="70" r="4" fill="#0a0a0a" />
+                {/* Handle end */}
+                <path d="M130 70 L150 70" />
+                <circle cx="150" cy="70" r="6" fill="#EE5A24" />
+            </g>
+
+            {/* Screwdriver (top-right to bottom-left) */}
+            <g transform="rotate(45 100 80)">
+                {/* Handle */}
+                <rect
+                    x="20"
+                    y="62"
+                    width="55"
+                    height="16"
+                    rx="3"
+                    fill="#EE5A24"
+                    stroke="#EE5A24"
+                />
+                {/* Shaft */}
+                <line x1="75" y1="70" x2="135" y2="70" />
+                {/* Tip */}
+                <path d="M135 64 L150 70 L135 76 Z" fill="#EE5A24" />
+            </g>
+
+            {/* Gear below */}
+            <g transform="translate(100 165)">
+                <circle r="22" />
+                <circle r="8" />
+                {/* 8 teeth */}
+                {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
+                    <rect
+                        key={deg}
+                        x="-3"
+                        y="-30"
+                        width="6"
+                        height="8"
+                        fill="#EE5A24"
+                        stroke="#EE5A24"
+                        transform={`rotate(${deg})`}
+                    />
+                ))}
+            </g>
+        </svg>
+    </div>
+);
+
+// ---------------- Hero (logo + slogan) ----------------
+
 const Hero = () => (
     <section
         id="top"
         className="container-x max-w-3xl mx-auto pt-20 md:pt-28 pb-12 text-center"
         data-testid="hero-section"
     >
-        <div className="inline-block bg-white rounded-3xl px-8 py-6 md:px-10 md:py-8 ring-1 ring-[hsl(var(--primary))]/30 shadow-[0_20px_60px_-15px_rgba(238,90,36,0.4)]">
-            <img
-                src={LOGO_URL}
-                alt="L.A. Technische Service"
-                className="mx-auto h-28 md:h-36 w-auto"
-                data-testid="hero-logo"
-            />
-        </div>
-        <div className="mt-10 flex items-center justify-center gap-3">
+        <BrandMark />
+        <div className="mt-8 flex items-center justify-center gap-3">
             <span className="accent-rule" />
             <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--primary))]">
                 L.A. Technische Service
@@ -175,11 +242,11 @@ const Contact = () => {
                         />
                     </div>
 
-                    <div className="pt-2">
+                    <div className="pt-2 flex justify-center">
                         <button
                             type="submit"
                             disabled={status.state === "loading"}
-                            className="btn-primary w-full sm:w-auto"
+                            className="btn-primary w-full sm:w-auto sm:min-w-[240px]"
                             data-testid="contact-submit-button"
                         >
                             {status.state === "loading" ? (
@@ -198,34 +265,34 @@ const Contact = () => {
                                 </>
                             )}
                         </button>
-
-                        {status.state === "success" && (
-                            <div
-                                className="mt-4 flex items-start gap-2 text-emerald-700 text-sm"
-                                data-testid="contact-success-message"
-                            >
-                                <CheckCircle
-                                    size={18}
-                                    weight="fill"
-                                    className="mt-0.5"
-                                />
-                                {status.msg}
-                            </div>
-                        )}
-                        {status.state === "error" && (
-                            <div
-                                className="mt-4 flex items-start gap-2 text-red-600 text-sm"
-                                data-testid="contact-error-message"
-                            >
-                                <XCircle
-                                    size={18}
-                                    weight="fill"
-                                    className="mt-0.5"
-                                />
-                                {status.msg}
-                            </div>
-                        )}
                     </div>
+
+                    {status.state === "success" && (
+                        <div
+                            className="flex items-start gap-2 text-emerald-400 text-sm justify-center"
+                            data-testid="contact-success-message"
+                        >
+                            <CheckCircle
+                                size={18}
+                                weight="fill"
+                                className="mt-0.5"
+                            />
+                            {status.msg}
+                        </div>
+                    )}
+                    {status.state === "error" && (
+                        <div
+                            className="flex items-start gap-2 text-red-400 text-sm justify-center"
+                            data-testid="contact-error-message"
+                        >
+                            <XCircle
+                                size={18}
+                                weight="fill"
+                                className="mt-0.5"
+                            />
+                            {status.msg}
+                        </div>
+                    )}
                 </form>
             </div>
 
