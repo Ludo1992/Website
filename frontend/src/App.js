@@ -10,12 +10,10 @@ import {
 } from "@phosphor-icons/react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `${BACKEND_URL}/api`; // eslint-disable-line no-unused-vars
 
 const LOGO_URL =
     "https://ludoaloserij.nl/wp-content/uploads/2023/11/Color-logo-no-background-1024x627.png";
-
-// ---------------- Hero (logo + slogan) ----------------
 
 // ---------------- Hero (logo + slogan) ----------------
 
