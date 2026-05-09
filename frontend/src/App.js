@@ -13,7 +13,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const LOGO_URL =
-    "https://customer-assets.emergentagent.com/job_game-archive-11/artifacts/c1if9j2d_image.png";
+    "https://ludoaloserij.nl/wp-content/uploads/2023/11/Color-logo-no-background-1024x627.png";
 
 // ---------------- Hero (logo + slogan) ----------------
 
@@ -30,8 +30,8 @@ const Hero = () => (
             <div className="absolute -inset-12 rounded-full bg-[hsl(var(--primary))]/15 blur-3xl pointer-events-none" />
             <img
                 src={LOGO_URL}
-                alt="L.A. Technische Service — Alles met Techniek"
-                className="relative h-80 sm:h-[28rem] md:h-[32rem] lg:h-[36rem] w-auto mx-auto"
+                alt="L.A. Technische Service"
+                className="relative h-72 sm:h-80 md:h-96 lg:h-[28rem] w-auto mx-auto"
                 data-testid="hero-logo"
             />
         </div>
