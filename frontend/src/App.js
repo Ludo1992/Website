@@ -17,7 +17,7 @@ const LOGO_URL =
 
 // ---------------- Hero (logo + slogan) ----------------
 
-// ---------------- Hero (logo + heading) ----------------
+// ---------------- Hero (logo + slogan) ----------------
 
 const Hero = () => (
     <section
@@ -27,30 +27,26 @@ const Hero = () => (
     >
         <div className="relative inline-block">
             {/* soft orange halo behind the logo */}
-            <div className="absolute -inset-10 rounded-full bg-[hsl(var(--primary))]/15 blur-3xl pointer-events-none" />
+            <div className="absolute -inset-12 rounded-full bg-[hsl(var(--primary))]/15 blur-3xl pointer-events-none" />
             <img
                 src={LOGO_URL}
                 alt="L.A. Technische Service"
-                className="relative h-36 md:h-48 lg:h-56 w-auto mx-auto"
+                className="relative h-52 md:h-64 lg:h-80 w-auto mx-auto"
                 data-testid="hero-logo"
             />
         </div>
 
-        <div className="mt-10 flex items-center justify-center gap-3">
+        <div className="mt-12 flex items-center justify-center gap-4">
             <span className="accent-rule" />
-            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--primary))]">
-                Alles met Techniek
+            <span
+                className="text-base sm:text-lg md:text-xl font-semibold uppercase tracking-[0.28em]"
+                data-testid="hero-slogan"
+            >
+                <span className="text-[hsl(var(--primary))]">Alles met</span>{" "}
+                <span className="text-white">Techniek</span>
             </span>
             <span className="accent-rule" />
         </div>
-
-        <h1
-            className="mt-5 font-[Poppins] font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white"
-            data-testid="hero-company"
-        >
-            L.A. <span className="text-[hsl(var(--primary))]">Technische</span>{" "}
-            Service
-        </h1>
     </section>
 );
 
