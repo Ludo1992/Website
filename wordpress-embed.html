@@ -1,0 +1,417 @@
+<!--
+========================================================================
+  L.A. TECHNISCHE SERVICE — Contactpagina (WordPress Embed)
+  ------------------------------------------------------------------------
+  HOE TE GEBRUIKEN:
+  1. Ga naar https://web3forms.com en vraag een gratis Access Key aan
+     met je e-mailadres: info@ludoaloserij.nl
+  2. Vervang HIERONDER `YOUR_ACCESS_KEY_HIER` (op één plek) door je
+     ontvangen access key.
+  3. Kopieer ALLE code hieronder (vanaf <style> tot en met </div>)
+     en plak het in een "Aangepaste HTML" blok in WordPress.
+  4. Klik na de eerste test-inzending op de bevestigingslink in de
+     mail die je krijgt — dan zit je live.
+========================================================================
+-->
+
+<style>
+  /* === L.A. Technische Service — Contact pagina === */
+  .lats-page {
+    --lats-bg: #0a0a0a;
+    --lats-card: rgba(255,255,255,0.04);
+    --lats-card-border: rgba(255,255,255,0.10);
+    --lats-input-bg: rgba(255,255,255,0.04);
+    --lats-input-border: rgba(255,255,255,0.10);
+    --lats-orange: #EE5A24;
+    --lats-orange-hover: #f0651f;
+    --lats-text: #ffffff;
+    --lats-muted: #9ca3af;
+    --lats-muted-2: #d1d5db;
+
+    position: relative;
+    background: radial-gradient(circle at 20% -10%, rgba(238,90,36,0.22), transparent 45%),
+                radial-gradient(circle at 90% 110%, rgba(238,90,36,0.18), transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(238,90,36,0.04), transparent 60%),
+                #0a0a0a;
+    color: var(--lats-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 60px 24px 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  .lats-page *, .lats-page *::before, .lats-page *::after { box-sizing: border-box; }
+
+  .lats-hero {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+  }
+  .lats-logo-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .lats-logo-glow {
+    position: absolute;
+    inset: -48px;
+    border-radius: 9999px;
+    background: rgba(238, 90, 36, 0.15);
+    filter: blur(48px);
+    pointer-events: none;
+  }
+  .lats-logo {
+    position: relative;
+    height: 240px;
+    width: auto;
+    max-width: 90vw;
+  }
+  @media (min-width: 640px) { .lats-logo { height: 320px; } }
+  @media (min-width: 768px) { .lats-logo { height: 384px; } }
+  @media (min-width: 1024px) { .lats-logo { height: 448px; } }
+
+  .lats-eyebrow {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+  @media (min-width: 640px) { .lats-eyebrow { font-size: 1.125rem; } }
+  @media (min-width: 768px) { .lats-eyebrow { font-size: 1.25rem; } }
+  .lats-eyebrow .rule {
+    display: inline-block;
+    width: 48px;
+    height: 4px;
+    background: var(--lats-orange);
+    border-radius: 9999px;
+  }
+  .lats-eyebrow .o { color: var(--lats-orange); }
+  .lats-eyebrow .w { color: #ffffff; }
+
+  .lats-contact {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 0 80px;
+  }
+  @media (min-width: 768px) { .lats-contact { padding-top: 64px; } }
+
+  .lats-contact-head {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .lats-contact-head h2 {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    margin: 0;
+  }
+  @media (min-width: 768px) { .lats-contact-head h2 { font-size: 2.25rem; } }
+  .lats-contact-head p {
+    margin-top: 12px;
+    color: var(--lats-muted);
+    font-size: 1rem;
+  }
+
+  .lats-card {
+    background: rgba(24, 24, 27, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--lats-card-border);
+    border-radius: 16px;
+    box-shadow: 0 30px 80px -25px rgba(238, 90, 36, 0.35);
+    padding: 28px;
+  }
+  @media (min-width: 768px) { .lats-card { padding: 40px; } }
+
+  .lats-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 640px) { .lats-row { grid-template-columns: 1fr 1fr; } }
+
+  .lats-field { margin-bottom: 20px; }
+  .lats-field-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--lats-muted);
+    margin-bottom: 8px;
+  }
+  .lats-field-input {
+    width: 100%;
+    background: var(--lats-input-bg);
+    border: 1px solid var(--lats-input-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .lats-field-input::placeholder { color: #6b7280; }
+  .lats-field-input:focus {
+    outline: none;
+    border-color: var(--lats-orange);
+    background: rgba(255,255,255,0.06);
+    box-shadow: 0 0 0 4px rgba(238,90,36,0.18);
+  }
+  textarea.lats-field-input { resize: none; min-height: 140px; }
+
+  .lats-submit-wrap {
+    padding-top: 8px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .lats-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--lats-orange);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 16px 32px;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 240px;
+    box-shadow: 0 8px 28px -6px rgba(238,90,36,0.55);
+    font-family: inherit;
+  }
+  .lats-submit:hover {
+    background: var(--lats-orange-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 36px -8px rgba(238,90,36,0.7);
+  }
+  .lats-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .lats-status {
+    display: none;
+    margin-top: 16px;
+    text-align: center;
+    font-size: 0.875rem;
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+  .lats-status.show { display: block; }
+  .lats-status.success {
+    color: #34d399;
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.2);
+  }
+  .lats-status.error {
+    color: #f87171;
+    background: rgba(248,113,113,0.08);
+    border: 1px solid rgba(248,113,113,0.2);
+  }
+
+  .lats-direct-mail {
+    margin-top: 24px;
+    text-align: center;
+  }
+  .lats-direct-mail a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--lats-muted);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .lats-direct-mail a:hover { color: var(--lats-orange); }
+
+  /* Honeypot — must stay invisible to humans */
+  .lats-botcheck {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .lats-footer {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.4);
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .lats-footer-name {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .lats-footer a {
+    color: var(--lats-muted-2);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 8px;
+  }
+  .lats-footer a:hover { color: var(--lats-orange); }
+  .lats-footer-kvk {
+    color: var(--lats-muted);
+    font-size: 0.875rem;
+    margin-bottom: 12px;
+  }
+  .lats-footer-copyright {
+    color: #6b7280;
+    font-size: 0.75rem;
+    margin-top: 16px;
+  }
+
+  /* Google fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
+</style>
+
+<div class="lats-page">
+
+  <!-- HERO: logo + slogan -->
+  <section class="lats-hero">
+    <div class="lats-logo-wrap">
+      <span class="lats-logo-glow"></span>
+      <img class="lats-logo"
+           src="https://ludoaloserij.nl/wp-content/uploads/2023/11/Color-logo-no-background-1024x627.png"
+           alt="L.A. Technische Service">
+    </div>
+    <div class="lats-eyebrow">
+      <span class="rule"></span>
+      <span><span class="o">Alles met</span> <span class="w">Techniek</span></span>
+      <span class="rule"></span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="lats-contact">
+    <div class="lats-contact-head">
+      <h2>Contact</h2>
+      <p>Vul hieronder uw gegevens in</p>
+    </div>
+
+    <div class="lats-card">
+      <form id="lats-contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms config (REPLACE the access key) -->
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HIER">
+        <input type="hidden" name="subject" value="Nieuw contactbericht via ludoaloserij.nl">
+        <input type="hidden" name="from_name" value="L.A. Technische Service — Contactformulier">
+
+        <!-- Honeypot (verbergt voor mensen, vangt bots) -->
+        <input type="checkbox" name="botcheck" class="lats-botcheck" tabindex="-1" autocomplete="off">
+
+        <div class="lats-row">
+          <div>
+            <label class="lats-field-label" for="lats-name">Volledige naam</label>
+            <input class="lats-field-input" type="text" id="lats-name" name="name" placeholder="Jouw naam" required autocomplete="name">
+          </div>
+          <div>
+            <label class="lats-field-label" for="lats-email">E-mail</label>
+            <input class="lats-field-input" type="email" id="lats-email" name="email" placeholder="naam@voorbeeld.nl" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="lats-field">
+          <label class="lats-field-label" for="lats-subject">Onderwerp</label>
+          <input class="lats-field-input" type="text" id="lats-subject" name="onderwerp" placeholder="Waar kan ik mee helpen?" required>
+        </div>
+
+        <div class="lats-field">
+          <label class="lats-field-label" for="lats-message">Bericht</label>
+          <textarea class="lats-field-input" id="lats-message" name="message" rows="6" placeholder="Vertel kort over je project, klus of vraag..." required></textarea>
+        </div>
+
+        <div class="lats-submit-wrap">
+          <button type="submit" class="lats-submit" id="lats-submit-btn">
+            <span id="lats-submit-text">Verzenden</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M3.4 20.4l17.45-7.48a1 1 0 000-1.84L3.4 3.6a1 1 0 00-1.4.92V9.5l13 2.5L2 14.5v4.98a1 1 0 001.4.92z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div id="lats-status" class="lats-status"></div>
+      </form>
+
+      <div class="lats-direct-mail">
+        <a href="mailto:info@ludoaloserij.nl">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          Of mail direct naar info@ludoaloserij.nl
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="lats-footer">
+    <div class="lats-footer-name">Ludo Aloserij</div>
+    <a href="mailto:info@ludoaloserij.nl">info@ludoaloserij.nl</a>
+    <div class="lats-footer-kvk">KVK: 80568173</div>
+    <div class="lats-footer-copyright">© 2026 L.A. Technische Service — Alles met Techniek</div>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var form = document.getElementById('lats-contact-form');
+    if (!form) return;
+    var status = document.getElementById('lats-status');
+    var btn = document.getElementById('lats-submit-btn');
+    var btnText = document.getElementById('lats-submit-text');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      status.className = 'lats-status';
+      btn.disabled = true;
+      btnText.textContent = 'Verzenden...';
+
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function (res) { return res.json().then(function (j) { return { ok: res.ok, body: j }; }); })
+      .then(function (r) {
+        if (r.ok && r.body && r.body.success) {
+          status.textContent = 'Bericht verzonden — ik neem zo snel mogelijk contact op.';
+          status.className = 'lats-status show success';
+          form.reset();
+        } else {
+          var msg = (r.body && r.body.message) ? r.body.message : 'Er ging iets mis. Probeer het opnieuw.';
+          status.textContent = msg;
+          status.className = 'lats-status show error';
+        }
+      })
+      .catch(function () {
+        status.textContent = 'Er ging iets mis. Probeer het opnieuw.';
+        status.className = 'lats-status show error';
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btnText.textContent = 'Verzenden';
+      });
+    });
+  })();
+</script>
