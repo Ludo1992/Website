@@ -1,50 +1,39 @@
-# L.A. Technische Service — Contact Page
+# L.A. Technische Service — Contact Page (Dark)
 
 ## Original Problem Statement
-User provided URL: https://ludoaloserij.nl/ — a one-man Dutch technical service business.
-After iteration the user clarified:
-- "Het hoeft eigenlijk alleen maar een contact pagina te zijn. Alleen dan van deze tijd. En het liefst in de bedrijfkleuren oranje wat het al was."
-- Logo MUST stay the same (bedrijfskleding/huisstijl).
-
-## Goal
-A modern, single-page contact site for Ludo Aloserij with brand-orange palette and the original logo preserved.
+URL provided: https://ludoaloserij.nl/. User pivoted to: alleen een moderne contactpagina, in bedrijfskleur oranje, met behoud van het originele logo. Vervolgens: donkere achtergrond, met logo én slogan "Alles met Techniek" duidelijk zichtbaar (referentiebeeld bij iteratie 3).
 
 ## User Persona
-- Ludo Aloserij (eigenaar, Dutch technician).
-- Bezoekers: potentiële klanten met een technische klus/storing/vraag.
+- Ludo Aloserij (eigenaar, ZZP technicus).
+- Bezoekers: potentiële klanten met klus/storing/vraag.
 
-## Core Requirements (locked)
-- Single page, Dutch language.
-- Original logo (https://ludoaloserij.nl/wp-content/uploads/2023/11/Color-logo-no-background-1024x627.png) in header & footer.
-- Orange brand color (#F97316 / brand-500).
-- Modern look: serif display heading (Instrument Serif), Inter body, rounded-2xl cards, soft glow, dot-grid.
-- Working contact form persisted to MongoDB.
-- KvK 80568173 + e-mail info@ludoaloserij.nl visible.
+## Locked Requirements
+- Single page, Nederlands.
+- Originele logo URL behouden (huisstijl/bedrijfskleding) — getoond op witte pill voor zichtbaarheid op donker.
+- Donker thema (#0d0d0f) met oranje (brand-500 #F97316) als accent + organische blob-vormen als sierelement.
+- Slogan "Alles met techniek" prominent: in header naast logo én groot in hero (serif italic).
+- Werkend contactformulier opgeslagen in MongoDB.
+- KvK 80568173 + e-mail info@ludoaloserij.nl zichtbaar.
 
 ## Architecture
-- Backend: FastAPI + Motor (MongoDB). Endpoints under /api.
-  - GET  /api/        → health
-  - POST /api/contact → create contact (Pydantic EmailStr validation, 201)
-  - GET  /api/contact → list contacts (no _id leak)
-- Frontend: React (CRA + Tailwind), single page (Header, Hero, Contact, Footer).
+- Backend: FastAPI + Motor (MongoDB), endpoints onder /api.
+  - GET  /api/         → health
+  - POST /api/contact  → create (Pydantic EmailStr, 201)
+  - GET  /api/contact  → list (geen _id leak)
+- Frontend: React (CRA + Tailwind). Single page: Header, Hero, Contact, Footer. Decoratieve orange blobs achter content.
 
-## Implemented (2026-05-09)
-- [x] Header with logo + sticky blur
-- [x] Hero with serif headline "Alles met techniek. Eén aanspreekpunt."
-- [x] Contact section with info cards (e-mail, KvK, reactietijd)
-- [x] Contact form (naam, e-mail, onderwerp, bericht) with success/error states
-- [x] Footer with logo, KvK, e-mail
-- [x] Backend POST/GET /api/contact, validated by Pydantic EmailStr
-- [x] All interactive elements have data-testid
-- [x] Tested: backend 100% (5/5), valid 201 + invalid 422 verified via curl
+## Implementation Log
+- 2026-05-09 — Iteration 1: Industrial dark site (cyaan accent, meerdere secties). 100% backend test pass.
+- 2026-05-09 — Iteration 2: Pivot naar minimalistische licht/oranje contactpagina.
+- 2026-05-09 — Iteration 3: Donker thema + oranje blobs + logo op witte pill + slogan groot in header en hero. Geverifieerd via curl: POST /api/contact → 201.
 
-## Backlog / Future
-- [ ] P1: Email-notificatie naar info@ludoaloserij.nl bij nieuw bericht (SendGrid/Resend integratie)
-- [ ] P2: Honeypot / rate limit tegen spam
-- [ ] P2: Admin-view om binnengekomen berichten te lezen
-- [ ] P3: SEO meta tags + Open Graph image
-- [ ] P3: Cookie banner (origineel had wpconsent)
+## Backlog
+- P1: E-mail forwarding bij contactaanvraag (SendGrid/Resend) zodat Ludo notificatie krijgt.
+- P2: Honeypot/rate-limit tegen spam.
+- P2: Mini admin-view om binnengekomen berichten te lezen.
+- P3: SEO meta tags + Open Graph image (gebruik logo).
+- P3: Cookie banner (origineel had wpconsent).
 
 ## Next Tasks
-1. (Optioneel) Echte e-mail forwarding bij contactaanvraag toevoegen.
+1. (Optioneel) E-mail notificaties.
 2. (Optioneel) Spambeveiliging.

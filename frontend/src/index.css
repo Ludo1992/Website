@@ -4,24 +4,24 @@
 
 @layer base {
     :root {
-        --background: 36 33% 97%;
-        --foreground: 24 10% 10%;
-        --card: 0 0% 100%;
-        --card-foreground: 24 10% 10%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 24 10% 10%;
+        --background: 0 0% 7%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 10%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 10%;
+        --popover-foreground: 0 0% 98%;
         --primary: 22 95% 53%;
         --primary-foreground: 0 0% 100%;
-        --secondary: 30 20% 94%;
-        --secondary-foreground: 24 10% 10%;
-        --muted: 30 20% 94%;
-        --muted-foreground: 24 5% 45%;
+        --secondary: 0 0% 14%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14%;
+        --muted-foreground: 0 0% 65%;
         --accent: 22 95% 53%;
         --accent-foreground: 0 0% 100%;
         --destructive: 0 84% 60%;
         --destructive-foreground: 0 0% 100%;
-        --border: 30 15% 88%;
-        --input: 30 15% 88%;
+        --border: 0 0% 18%;
+        --input: 0 0% 18%;
         --ring: 22 95% 53%;
         --radius: 0.75rem;
     }
@@ -37,9 +37,7 @@
     body {
         @apply bg-background text-foreground antialiased;
         font-family: "Inter", system-ui, sans-serif;
-        font-feature-settings:
-            "ss01" on,
-            "cv11" on;
+        background-color: #0d0d0f;
     }
     h1,
     h2,
@@ -47,7 +45,7 @@
     h4 {
         font-family: "Instrument Serif", Georgia, serif;
         font-weight: 400;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.01em;
     }
 }
 
@@ -78,34 +76,19 @@
     .eyebrow {
         font-family: "JetBrains Mono", monospace;
         font-size: 0.7rem;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
         color: hsl(var(--primary));
     }
 
-    .glow-bg {
-        background:
-            radial-gradient(
-                circle at 10% 0%,
-                rgba(249, 115, 22, 0.18),
-                transparent 45%
-            ),
-            radial-gradient(
-                circle at 90% 30%,
-                rgba(249, 115, 22, 0.08),
-                transparent 50%
-            ),
-            #faf8f4;
-    }
-
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 bg-[hsl(var(--primary))] text-white font-medium px-6 py-3.5 rounded-full text-sm transition-all duration-200;
-        box-shadow: 0 6px 20px -6px rgba(249, 115, 22, 0.5);
+        @apply inline-flex items-center justify-center gap-2 bg-[hsl(var(--primary))] text-white font-medium px-7 py-4 rounded-full text-sm tracking-wide transition-all duration-200;
+        box-shadow: 0 8px 28px -8px rgba(249, 115, 22, 0.6);
     }
     .btn-primary:hover {
         background: #ea580c;
         transform: translateY(-1px);
-        box-shadow: 0 10px 28px -8px rgba(249, 115, 22, 0.6);
+        box-shadow: 0 14px 32px -10px rgba(249, 115, 22, 0.75);
     }
     .btn-primary:disabled {
         opacity: 0.6;
@@ -114,33 +97,66 @@
     }
 
     .btn-outline {
-        @apply inline-flex items-center justify-center gap-2 bg-white text-zinc-900 font-medium px-6 py-3.5 rounded-full text-sm border border-zinc-200 transition-all duration-200;
+        @apply inline-flex items-center justify-center gap-2 bg-transparent text-white font-medium px-7 py-4 rounded-full text-sm border border-white/20 transition-all duration-200;
     }
     .btn-outline:hover {
-        @apply border-[hsl(var(--primary))] text-[hsl(var(--primary))];
+        @apply border-brand-400 text-brand-400;
+        background: rgba(249, 115, 22, 0.06);
     }
 
     .field-label {
-        @apply block text-xs font-medium text-zinc-600 mb-2;
+        @apply block text-[0.7rem] font-mono tracking-[0.18em] uppercase text-zinc-400 mb-2;
     }
 
     .field-input {
-        @apply w-full bg-white border border-zinc-200 rounded-xl px-4 py-3.5 text-zinc-900 placeholder:text-zinc-400 transition-colors;
+        @apply w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-zinc-500 transition-colors;
         font-size: 0.95rem;
     }
     .field-input:focus {
         outline: none;
         border-color: hsl(var(--primary));
-        box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.12);
+        box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
+        background: rgba(255, 255, 255, 0.06);
     }
 
-    /* Subtle grid background like modern sites */
-    .dot-grid {
-        background-image: radial-gradient(
-            rgba(0, 0, 0, 0.06) 1px,
-            transparent 1px
+    /* Decorative orange blob */
+    .blob {
+        position: absolute;
+        background: radial-gradient(
+            closest-side,
+            #f97316 0%,
+            #ea580c 50%,
+            transparent 70%
         );
-        background-size: 22px 22px;
+        filter: blur(2px);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .grid-fade {
+        background-image:
+            linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.04) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.04) 1px,
+                transparent 1px
+            );
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+            ellipse at center,
+            black 30%,
+            transparent 80%
+        );
+    }
+
+    .icon-badge {
+        @apply h-12 w-12 rounded-full flex items-center justify-center text-white shrink-0;
+        background: linear-gradient(135deg, #fb923c 0%, #f97316 60%, #ea580c 100%);
+        box-shadow: 0 8px 22px -8px rgba(249, 115, 22, 0.55);
     }
 
     .underline-link {
@@ -163,9 +179,20 @@
         transform-origin: left;
     }
 
-    /* Selection */
     ::selection {
-        background: #fed7aa;
-        color: #1f2937;
+        background: #fb923c;
+        color: #111;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0d0d0f;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #2a2a2e;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #f97316;
     }
 }

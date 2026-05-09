@@ -10,6 +10,7 @@ import {
     XCircle,
     ArrowUpRight,
     Clock,
+    Wrench,
 } from "@phosphor-icons/react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -18,29 +19,79 @@ const API = `${BACKEND_URL}/api`;
 const LOGO_URL =
     "https://ludoaloserij.nl/wp-content/uploads/2023/11/Color-logo-no-background-1024x627.png";
 
+// ---------------- Decorative blobs ----------------
+
+const Blobs = () => (
+    <>
+        {/* Big left blob (top) */}
+        <div
+            className="blob"
+            style={{
+                width: "640px",
+                height: "640px",
+                top: "-180px",
+                left: "-260px",
+                opacity: 0.55,
+            }}
+        />
+        {/* Right side blob (mid) */}
+        <div
+            className="blob"
+            style={{
+                width: "520px",
+                height: "520px",
+                top: "30%",
+                right: "-200px",
+                opacity: 0.35,
+            }}
+        />
+        {/* Bottom left small */}
+        <div
+            className="blob"
+            style={{
+                width: "360px",
+                height: "360px",
+                bottom: "-120px",
+                left: "10%",
+                opacity: 0.25,
+            }}
+        />
+    </>
+);
+
 // ---------------- Header ----------------
 
 const Header = () => (
     <header
-        className="sticky top-0 z-40 backdrop-blur-md bg-[#faf8f4]/80 border-b border-zinc-200/60"
+        className="relative z-30 backdrop-blur-md bg-zinc-950/40 border-b border-white/5"
         data-testid="site-header"
     >
-        <div className="container-x h-20 flex items-center justify-between max-w-6xl mx-auto">
+        <div className="container-x h-24 flex items-center justify-between max-w-6xl mx-auto">
             <a
                 href="#top"
-                className="flex items-center gap-3"
+                className="flex items-center gap-4"
                 data-testid="header-logo-link"
             >
-                <img
-                    src={LOGO_URL}
-                    alt="L.A. Technische Service"
-                    className="h-10 md:h-12 w-auto"
-                    data-testid="header-logo"
-                />
+                <div className="bg-white rounded-2xl px-4 py-2.5 shadow-[0_8px_28px_-8px_rgba(249,115,22,0.45)] ring-1 ring-brand-500/20">
+                    <img
+                        src={LOGO_URL}
+                        alt="L.A. Technische Service"
+                        className="h-11 md:h-12 w-auto"
+                        data-testid="header-logo"
+                    />
+                </div>
+                <div className="hidden sm:flex flex-col leading-tight">
+                    <span className="font-serif italic text-2xl md:text-[28px] text-white">
+                        Alles met techniek
+                    </span>
+                    <span className="text-[0.65rem] font-mono uppercase tracking-[0.28em] text-brand-400 mt-1">
+                        L.A. Technische Service
+                    </span>
+                </div>
             </a>
             <a
                 href="#contact"
-                className="hidden sm:inline-flex btn-primary"
+                className="hidden md:inline-flex btn-primary"
                 data-testid="header-cta"
             >
                 Neem contact op
@@ -55,64 +106,82 @@ const Header = () => (
 const Hero = () => (
     <section
         id="top"
-        className="relative overflow-hidden glow-bg"
+        className="relative overflow-hidden"
         data-testid="hero-section"
     >
-        <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
+        <div className="absolute inset-0 grid-fade opacity-70 pointer-events-none" />
 
-        <div className="relative container-x max-w-6xl mx-auto pt-20 md:pt-28 pb-16 md:pb-24">
-            <div
-                className="flex items-center gap-3 mb-7 animate-fade-up"
-                style={{ animationDelay: "0.05s", opacity: 0 }}
-            >
+        <div className="relative container-x max-w-6xl mx-auto pt-16 md:pt-24 pb-12 md:pb-16">
+            <div className="flex items-center gap-3 mb-7">
                 <span className="h-2.5 w-2.5 rounded-full bg-brand-500 animate-pulse" />
-                <span className="eyebrow">Beschikbaar voor opdrachten</span>
+                <span className="eyebrow">
+                    Beschikbaar voor opdrachten
+                </span>
             </div>
 
-            <h1
-                className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[88px] leading-[1] tracking-tight text-zinc-900 max-w-4xl animate-fade-up"
-                style={{ animationDelay: "0.15s", opacity: 0 }}
-                data-testid="hero-title"
-            >
-                Alles met{" "}
-                <span className="italic text-brand-500">techniek.</span>
-                <br />
-                <span className="text-zinc-400">Eén aanspreekpunt.</span>
-            </h1>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+                <div>
+                    <h1
+                        className="font-serif text-6xl sm:text-7xl md:text-8xl leading-[0.95] text-white"
+                        data-testid="hero-title"
+                    >
+                        Alles met
+                        <br />
+                        <span className="italic text-brand-500">techniek.</span>
+                    </h1>
+                    <p
+                        className="mt-7 max-w-xl text-base md:text-lg text-zinc-400 leading-relaxed"
+                        data-testid="hero-description"
+                    >
+                        L.A. Technische Service — hands-on technische dienstverlening
+                        door Ludo Aloserij. Heb je een klus, vraag of storing? Stuur
+                        een berichtje en ik neem snel contact met je op.
+                    </p>
+                </div>
 
-            <p
-                className="mt-8 max-w-xl text-lg md:text-xl text-zinc-600 leading-relaxed animate-fade-up"
-                style={{ animationDelay: "0.3s", opacity: 0 }}
-                data-testid="hero-description"
-            >
-                L.A. Technische Service — hands-on technische dienstverlening
-                door Ludo Aloserij. Heb je een klus, vraag of storing? Stuur
-                een berichtje en ik neem snel contact met je op.
-            </p>
-
-            <div
-                className="mt-10 flex flex-wrap gap-3 animate-fade-up"
-                style={{ animationDelay: "0.45s", opacity: 0 }}
-            >
-                <a
-                    href="#contact"
-                    className="btn-primary"
-                    data-testid="hero-cta-primary"
-                >
-                    Stuur een bericht
-                    <PaperPlaneTilt size={16} weight="fill" />
-                </a>
-                <a
-                    href="mailto:info@ludoaloserij.nl"
-                    className="btn-outline"
-                    data-testid="hero-cta-mail"
-                >
-                    info@ludoaloserij.nl
-                </a>
+                <div className="hidden md:flex items-center gap-4 pb-2">
+                    <div className="h-px w-16 bg-brand-500" />
+                    <Wrench size={28} weight="duotone" className="text-brand-500" />
+                </div>
             </div>
         </div>
     </section>
 );
+
+// ---------------- Contact info card ----------------
+
+const InfoRow = ({ Icon, label, value, href, testid }) => {
+    const Wrapper = href ? "a" : "div";
+    const props = href
+        ? {
+              href,
+              className:
+                  "group flex items-start gap-5 py-5 hover:translate-x-1 transition-transform",
+          }
+        : { className: "flex items-start gap-5 py-5" };
+    return (
+        <Wrapper {...props} data-testid={testid}>
+            <div className="icon-badge">
+                <Icon size={20} weight="bold" />
+            </div>
+            <div className="flex-1 pt-1">
+                <div className="text-xs font-mono uppercase tracking-[0.18em] text-zinc-400 mb-1">
+                    {label}
+                </div>
+                <div className="text-white text-lg font-medium">
+                    {value}
+                </div>
+            </div>
+            {href && (
+                <ArrowUpRight
+                    size={18}
+                    className="text-zinc-500 group-hover:text-brand-400 mt-2 transition-colors"
+                    weight="bold"
+                />
+            )}
+        </Wrapper>
+    );
+};
 
 // ---------------- Contact Form ----------------
 
@@ -155,42 +224,41 @@ const ContactForm = () => {
     return (
         <form
             onSubmit={submit}
-            className="space-y-6"
+            className="space-y-5"
             data-testid="contact-form"
             noValidate
         >
-            <div className="grid md:grid-cols-2 gap-5">
-                <div>
-                    <label className="field-label" htmlFor="name">
-                        Volledige naam
-                    </label>
-                    <input
-                        id="name"
-                        required
-                        value={form.name}
-                        onChange={update("name")}
-                        className="field-input"
-                        placeholder="Jouw naam"
-                        autoComplete="name"
-                        data-testid="contact-input-name"
-                    />
-                </div>
-                <div>
-                    <label className="field-label" htmlFor="email">
-                        E-mail
-                    </label>
-                    <input
-                        id="email"
-                        type="email"
-                        required
-                        value={form.email}
-                        onChange={update("email")}
-                        className="field-input"
-                        placeholder="naam@voorbeeld.nl"
-                        autoComplete="email"
-                        data-testid="contact-input-email"
-                    />
-                </div>
+            <div>
+                <label className="field-label" htmlFor="name">
+                    Volledige naam
+                </label>
+                <input
+                    id="name"
+                    required
+                    value={form.name}
+                    onChange={update("name")}
+                    className="field-input"
+                    placeholder="Jouw naam"
+                    autoComplete="name"
+                    data-testid="contact-input-name"
+                />
+            </div>
+
+            <div>
+                <label className="field-label" htmlFor="email">
+                    E-mailadres
+                </label>
+                <input
+                    id="email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={update("email")}
+                    className="field-input"
+                    placeholder="naam@voorbeeld.nl"
+                    autoComplete="email"
+                    data-testid="contact-input-email"
+                />
             </div>
 
             <div>
@@ -215,7 +283,7 @@ const ContactForm = () => {
                 <textarea
                     id="message"
                     required
-                    rows={6}
+                    rows={5}
                     value={form.message}
                     onChange={update("message")}
                     className="field-input resize-none"
@@ -224,11 +292,11 @@ const ContactForm = () => {
                 />
             </div>
 
-            <div className="flex flex-wrap items-center gap-5 pt-2">
+            <div className="pt-3">
                 <button
                     type="submit"
                     disabled={status.state === "loading"}
-                    className="btn-primary"
+                    className="btn-primary w-full sm:w-auto"
                     data-testid="contact-submit-button"
                 >
                     {status.state === "loading" ? (
@@ -250,19 +318,19 @@ const ContactForm = () => {
 
                 {status.state === "success" && (
                     <div
-                        className="flex items-center gap-2 text-emerald-700 text-sm"
+                        className="mt-4 flex items-start gap-2 text-emerald-400 text-sm"
                         data-testid="contact-success-message"
                     >
-                        <CheckCircle size={18} weight="fill" />
+                        <CheckCircle size={18} weight="fill" className="mt-0.5" />
                         {status.msg}
                     </div>
                 )}
                 {status.state === "error" && (
                     <div
-                        className="flex items-center gap-2 text-red-600 text-sm"
+                        className="mt-4 flex items-start gap-2 text-red-400 text-sm"
                         data-testid="contact-error-message"
                     >
-                        <XCircle size={18} weight="fill" />
+                        <XCircle size={18} weight="fill" className="mt-0.5" />
                         {status.msg}
                     </div>
                 )}
@@ -271,93 +339,63 @@ const ContactForm = () => {
     );
 };
 
-// ---------------- Contact Section ----------------
+// ---------------- Contact section ----------------
 
 const Contact = () => (
     <section
         id="contact"
-        className="relative container-x max-w-6xl mx-auto py-20 md:py-28"
+        className="relative container-x max-w-6xl mx-auto pb-24 md:pb-32 pt-4"
         data-testid="contact-section"
     >
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
-            {/* Left: copy + contact info */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
+            {/* LEFT: contact info */}
             <div className="lg:col-span-5">
                 <span className="eyebrow">Contact</span>
-                <h2 className="mt-4 font-serif text-4xl md:text-5xl tracking-tight text-zinc-900">
+                <h2 className="mt-4 font-serif text-4xl md:text-5xl text-white">
                     Even <span className="italic text-brand-500">kennismaken?</span>
                 </h2>
-                <p className="mt-5 text-zinc-600 leading-relaxed">
+                <p className="mt-4 text-zinc-400 leading-relaxed max-w-md">
                     Vul het formulier in of mail direct. Reactie meestal binnen
                     24 uur.
                 </p>
 
-                <div className="mt-10 space-y-4">
-                    <a
+                <div className="mt-8 divide-y divide-white/5">
+                    <InfoRow
+                        Icon={EnvelopeSimple}
+                        label="E-mail"
+                        value="info@ludoaloserij.nl"
                         href="mailto:info@ludoaloserij.nl"
-                        className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-zinc-200 hover:border-brand-400 hover:shadow-sm transition-all group"
-                        data-testid="contact-info-email"
-                    >
-                        <div className="h-11 w-11 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 group-hover:bg-brand-500 group-hover:text-white transition-colors">
-                            <EnvelopeSimple size={20} weight="duotone" />
-                        </div>
-                        <div className="flex-1">
-                            <div className="text-xs text-zinc-500 mb-0.5">
-                                E-mail
-                            </div>
-                            <div className="text-zinc-900 font-medium">
-                                info@ludoaloserij.nl
-                            </div>
-                        </div>
-                        <ArrowUpRight
-                            size={18}
-                            className="text-zinc-400 group-hover:text-brand-500 transition-colors"
-                            weight="bold"
-                        />
-                    </a>
-
-                    <div
-                        className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-zinc-200"
-                        data-testid="contact-info-kvk"
-                    >
-                        <div className="h-11 w-11 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">
-                            <IdentificationCard size={20} weight="duotone" />
-                        </div>
-                        <div>
-                            <div className="text-xs text-zinc-500 mb-0.5">
-                                KvK
-                            </div>
-                            <div className="text-zinc-900 font-medium">
-                                80568173
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-zinc-200"
-                        data-testid="contact-info-hours"
-                    >
-                        <div className="h-11 w-11 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">
-                            <Clock size={20} weight="duotone" />
-                        </div>
-                        <div>
-                            <div className="text-xs text-zinc-500 mb-0.5">
-                                Reactietijd
-                            </div>
-                            <div className="text-zinc-900 font-medium">
-                                Binnen 24 uur
-                            </div>
-                        </div>
-                    </div>
+                        testid="contact-info-email"
+                    />
+                    <InfoRow
+                        Icon={IdentificationCard}
+                        label="KvK-nummer"
+                        value="80568173"
+                        testid="contact-info-kvk"
+                    />
+                    <InfoRow
+                        Icon={Clock}
+                        label="Reactietijd"
+                        value="Binnen 24 uur"
+                        testid="contact-info-hours"
+                    />
                 </div>
             </div>
 
-            {/* Right: form card */}
+            {/* RIGHT: form card */}
             <div className="lg:col-span-7">
-                <div className="bg-white rounded-3xl border border-zinc-200 p-7 md:p-10 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)]">
-                    <h3 className="font-serif text-2xl md:text-3xl text-zinc-900 mb-1">
-                        Stuur een bericht
-                    </h3>
-                    <p className="text-sm text-zinc-500 mb-8">
+                <div className="relative bg-zinc-900/60 backdrop-blur-sm border border-white/10 rounded-3xl p-7 md:p-10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+                    {/* small accent corner */}
+                    <div className="absolute -top-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-brand-500/60 to-transparent" />
+                    <div className="flex items-baseline justify-between mb-6">
+                        <h3 className="font-serif text-3xl md:text-4xl text-white">
+                            Stuur een bericht
+                        </h3>
+                        <span className="eyebrow hidden sm:inline">
+                            01 / Contact
+                        </span>
+                    </div>
+                    <p className="text-sm text-zinc-400 mb-8">
                         Vul hieronder je gegevens in.
                     </p>
                     <ContactForm />
@@ -371,18 +409,20 @@ const Contact = () => (
 
 const Footer = () => (
     <footer
-        className="border-t border-zinc-200 bg-white"
+        className="relative border-t border-white/5 bg-black/40"
         data-testid="site-footer"
     >
         <div className="container-x max-w-6xl mx-auto py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-                <img
-                    src={LOGO_URL}
-                    alt="L.A. Technische Service"
-                    className="h-10 w-auto"
-                />
+                <div className="bg-white rounded-xl px-3 py-2 ring-1 ring-brand-500/20">
+                    <img
+                        src={LOGO_URL}
+                        alt="L.A. Technische Service"
+                        className="h-9 w-auto"
+                    />
+                </div>
                 <div className="text-sm text-zinc-500">
-                    <div className="text-zinc-900 font-medium">
+                    <div className="text-white font-medium">
                         Ludo Aloserij
                     </div>
                     <div>KvK: 80568173</div>
@@ -391,12 +431,12 @@ const Footer = () => (
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-500">
                 <a
                     href="mailto:info@ludoaloserij.nl"
-                    className="underline-link text-zinc-700 hover:text-brand-600"
+                    className="underline-link text-zinc-300 hover:text-brand-400"
                     data-testid="footer-email"
                 >
                     info@ludoaloserij.nl
                 </a>
-                <span className="text-zinc-300">•</span>
+                <span className="text-zinc-700">•</span>
                 <span>© {new Date().getFullYear()} L.A. Technische Service</span>
             </div>
         </div>
@@ -407,11 +447,17 @@ const Footer = () => (
 
 function App() {
     return (
-        <div className="App" data-testid="app-root">
-            <Header />
-            <Hero />
-            <Contact />
-            <Footer />
+        <div
+            className="App relative min-h-screen overflow-hidden"
+            data-testid="app-root"
+        >
+            <Blobs />
+            <div className="relative z-10">
+                <Header />
+                <Hero />
+                <Contact />
+                <Footer />
+            </div>
         </div>
     );
 }
