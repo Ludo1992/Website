@@ -5,8 +5,8 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['"IBM Plex Sans"', "sans-serif"],
-                heading: ['"Chivo"', "sans-serif"],
+                sans: ['"Inter"', "system-ui", "sans-serif"],
+                serif: ['"Instrument Serif"', "Georgia", "serif"],
                 mono: ['"JetBrains Mono"', "monospace"],
             },
             borderRadius: {
@@ -48,15 +48,16 @@ module.exports = {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
-                ink: {
-                    900: "#0C0F12",
-                    800: "#13171C",
-                    700: "#1B2128",
-                },
-                cyber: {
-                    DEFAULT: "#00E5FF",
-                    400: "#22D3EE",
-                    500: "#06B6D4",
+                brand: {
+                    50: "#FFF7ED",
+                    100: "#FFEDD5",
+                    200: "#FED7AA",
+                    300: "#FDBA74",
+                    400: "#FB923C",
+                    500: "#F97316",
+                    600: "#EA580C",
+                    700: "#C2410C",
+                    900: "#7C2D12",
                 },
             },
             keyframes: {
@@ -69,24 +70,14 @@ module.exports = {
                     to: { height: "0" },
                 },
                 "fade-up": {
-                    "0%": { opacity: "0", transform: "translateY(20px)" },
+                    "0%": { opacity: "0", transform: "translateY(16px)" },
                     "100%": { opacity: "1", transform: "translateY(0)" },
-                },
-                marquee: {
-                    "0%": { transform: "translateX(0)" },
-                    "100%": { transform: "translateX(-50%)" },
-                },
-                "pulse-line": {
-                    "0%, 100%": { opacity: "0.3" },
-                    "50%": { opacity: "1" },
                 },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
                 "fade-up": "fade-up 0.7s ease-out forwards",
-                marquee: "marquee 40s linear infinite",
-                "pulse-line": "pulse-line 2s ease-in-out infinite",
             },
         },
     },
