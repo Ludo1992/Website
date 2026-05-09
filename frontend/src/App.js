@@ -6,6 +6,7 @@ import {
     CircleNotch,
     CheckCircle,
     XCircle,
+    EnvelopeSimple,
 } from "@phosphor-icons/react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -14,55 +15,47 @@ const API = `${BACKEND_URL}/api`;
 const LOGO_URL =
     "https://ludoaloserij.nl/wp-content/uploads/2023/11/Color-logo-no-background-1024x627.png";
 
-// ---------------- Hero (logo right + orange blob left, black bg) ----------------
+// ---------------- Hero (logo + slogan) ----------------
 
-const HeroVisual = () => (
+const Hero = () => (
     <section
         id="top"
-        className="relative w-full overflow-hidden"
+        className="container-x max-w-3xl mx-auto pt-20 md:pt-28 pb-12 text-center"
         data-testid="hero-section"
     >
-        {/* Right: BIG logo on white pill */}
-        <div className="absolute top-8 md:top-12 right-0 w-[58%] md:w-[55%] h-[420px] md:h-[520px] flex items-center justify-center pointer-events-none">
-            <div className="bg-white rounded-3xl px-10 py-10 md:px-16 md:py-12 shadow-[0_30px_80px_-20px_rgba(238,90,36,0.45)] ring-1 ring-[hsl(var(--primary))]/30">
-                <img
-                    src={LOGO_URL}
-                    alt="L.A. Technische Service"
-                    className="h-40 md:h-56 lg:h-64 w-auto"
-                    data-testid="hero-logo"
-                />
-            </div>
+        <img
+            src={LOGO_URL}
+            alt="L.A. Technische Service"
+            className="mx-auto h-32 md:h-40 w-auto"
+            data-testid="hero-logo"
+        />
+        <div className="mt-8 flex items-center justify-center gap-3">
+            <span className="accent-rule" />
+            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--primary))]">
+                L.A. Technische Service
+            </span>
+            <span className="accent-rule" />
         </div>
-
-        {/* Left: organic orange blob */}
-        <div className="absolute top-[180px] -left-10 w-[58%] md:w-[55%] h-[420px] md:h-[480px] pointer-events-none">
-            <svg
-                viewBox="0 0 800 700"
-                xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="none"
-                className="w-full h-full"
-                aria-hidden="true"
-            >
-                <path
-                    d="M0,80 C140,30 290,90 420,140 C560,195 690,170 800,120 L800,520 C700,490 580,560 440,580 C310,598 170,560 70,610 C30,628 0,640 -10,648 L-10,80 Z"
-                    fill="#EE5A24"
-                />
-                <path
-                    d="M-20,200 C100,170 230,250 360,290 C500,332 620,310 740,270 L760,540 C640,520 510,580 380,590 C250,600 120,560 0,610 L-20,200 Z"
-                    fill="#F2723A"
-                    opacity="0.55"
-                />
-            </svg>
-        </div>
-
-        {/* Spacer to push form below hero visuals */}
-        <div className="h-[470px] md:h-[560px]" />
+        <h1
+            className="mt-5 font-[Poppins] font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-zinc-900"
+            data-testid="hero-slogan"
+        >
+            Alles met <span className="text-[hsl(var(--primary))]">Techniek</span>
+        </h1>
+        <p
+            className="mt-5 text-zinc-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed"
+            data-testid="hero-description"
+        >
+            Hands-on technische dienstverlening door Ludo Aloserij. Heb je een
+            klus, vraag of storing? Vul het formulier in en ik neem snel
+            contact met je op.
+        </p>
     </section>
 );
 
-// ---------------- Contact form card ----------------
+// ---------------- Contact ----------------
 
-const ContactCard = () => {
+const Contact = () => {
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -99,119 +92,161 @@ const ContactCard = () => {
     };
 
     return (
-        <div
-            className="bg-zinc-100 rounded-md shadow-[0_25px_60px_-20px_rgba(238,90,36,0.35)] p-8 md:p-12 lg:p-14 max-w-2xl mx-auto w-full"
-            data-testid="contact-form-card"
+        <section
+            id="contact"
+            className="container-x max-w-2xl mx-auto pb-20"
+            data-testid="contact-section"
         >
-            <h2
-                className="text-zinc-900 text-3xl md:text-4xl font-[Poppins] font-extrabold uppercase tracking-tight text-center mb-3"
-                data-testid="contact-form-title"
+            <div className="text-center mb-10">
+                <h2 className="font-[Poppins] font-bold text-3xl md:text-4xl text-zinc-900">
+                    Contact
+                </h2>
+                <p className="mt-3 text-zinc-500">
+                    Vul hieronder uw gegevens in
+                </p>
+            </div>
+
+            <div
+                className="bg-white border border-zinc-200 rounded-2xl shadow-[0_20px_60px_-25px_rgba(238,90,36,0.25)] p-7 md:p-10"
+                data-testid="contact-form-card"
             >
-                Contacteer ons
-            </h2>
-            <p className="text-center text-zinc-500 text-sm mb-8">
-                Vul hieronder je gegevens in.
-            </p>
+                <form
+                    onSubmit={submit}
+                    className="space-y-5"
+                    data-testid="contact-form"
+                    noValidate
+                >
+                    <div className="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label className="field-label" htmlFor="name">
+                                Volledige naam
+                            </label>
+                            <input
+                                id="name"
+                                required
+                                value={form.name}
+                                onChange={update("name")}
+                                className="field-input"
+                                placeholder="Jouw naam"
+                                autoComplete="name"
+                                data-testid="contact-input-name"
+                            />
+                        </div>
+                        <div>
+                            <label className="field-label" htmlFor="email">
+                                E-mail
+                            </label>
+                            <input
+                                id="email"
+                                type="email"
+                                required
+                                value={form.email}
+                                onChange={update("email")}
+                                className="field-input"
+                                placeholder="naam@voorbeeld.nl"
+                                autoComplete="email"
+                                data-testid="contact-input-email"
+                            />
+                        </div>
+                    </div>
 
-            <form
-                onSubmit={submit}
-                className="space-y-4"
-                data-testid="contact-form"
-                noValidate
-            >
-                <input
-                    required
-                    value={form.name}
-                    onChange={update("name")}
-                    className="field-input"
-                    placeholder="Volledige naam"
-                    autoComplete="name"
-                    data-testid="contact-input-name"
-                />
+                    <div>
+                        <label className="field-label" htmlFor="subject">
+                            Onderwerp
+                        </label>
+                        <input
+                            id="subject"
+                            required
+                            value={form.subject}
+                            onChange={update("subject")}
+                            className="field-input"
+                            placeholder="Waar kan ik mee helpen?"
+                            data-testid="contact-input-subject"
+                        />
+                    </div>
 
-                <input
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={update("email")}
-                    className="field-input"
-                    placeholder="Geldig e-mailadres"
-                    autoComplete="email"
-                    data-testid="contact-input-email"
-                />
+                    <div>
+                        <label className="field-label" htmlFor="message">
+                            Bericht
+                        </label>
+                        <textarea
+                            id="message"
+                            required
+                            rows={6}
+                            value={form.message}
+                            onChange={update("message")}
+                            className="field-input resize-none"
+                            placeholder="Vertel kort over je project, klus of vraag..."
+                            data-testid="contact-input-message"
+                        />
+                    </div>
 
-                <input
-                    required
-                    value={form.subject}
-                    onChange={update("subject")}
-                    className="field-input"
-                    placeholder="Onderwerp"
-                    data-testid="contact-input-subject"
-                />
+                    <div className="pt-2">
+                        <button
+                            type="submit"
+                            disabled={status.state === "loading"}
+                            className="btn-primary w-full sm:w-auto"
+                            data-testid="contact-submit-button"
+                        >
+                            {status.state === "loading" ? (
+                                <>
+                                    <CircleNotch
+                                        size={16}
+                                        className="animate-spin"
+                                        weight="bold"
+                                    />
+                                    Verzenden...
+                                </>
+                            ) : (
+                                <>
+                                    Verzenden
+                                    <PaperPlaneTilt size={16} weight="fill" />
+                                </>
+                            )}
+                        </button>
 
-                <textarea
-                    required
-                    rows={6}
-                    value={form.message}
-                    onChange={update("message")}
-                    className="field-input resize-none"
-                    placeholder="Bericht"
-                    data-testid="contact-input-message"
-                />
-
-                <div className="pt-3">
-                    <button
-                        type="submit"
-                        disabled={status.state === "loading"}
-                        className="btn-primary w-full"
-                        data-testid="contact-submit-button"
-                    >
-                        {status.state === "loading" ? (
-                            <>
-                                <CircleNotch
-                                    size={16}
-                                    className="animate-spin"
-                                    weight="bold"
+                        {status.state === "success" && (
+                            <div
+                                className="mt-4 flex items-start gap-2 text-emerald-700 text-sm"
+                                data-testid="contact-success-message"
+                            >
+                                <CheckCircle
+                                    size={18}
+                                    weight="fill"
+                                    className="mt-0.5"
                                 />
-                                Verzenden...
-                            </>
-                        ) : (
-                            <>
-                                Verzenden
-                                <PaperPlaneTilt size={16} weight="fill" />
-                            </>
+                                {status.msg}
+                            </div>
                         )}
-                    </button>
+                        {status.state === "error" && (
+                            <div
+                                className="mt-4 flex items-start gap-2 text-red-600 text-sm"
+                                data-testid="contact-error-message"
+                            >
+                                <XCircle
+                                    size={18}
+                                    weight="fill"
+                                    className="mt-0.5"
+                                />
+                                {status.msg}
+                            </div>
+                        )}
+                    </div>
+                </form>
+            </div>
 
-                    {status.state === "success" && (
-                        <div
-                            className="mt-4 flex items-start gap-2 text-emerald-700 text-sm"
-                            data-testid="contact-success-message"
-                        >
-                            <CheckCircle
-                                size={18}
-                                weight="fill"
-                                className="mt-0.5"
-                            />
-                            {status.msg}
-                        </div>
-                    )}
-                    {status.state === "error" && (
-                        <div
-                            className="mt-4 flex items-start gap-2 text-red-600 text-sm"
-                            data-testid="contact-error-message"
-                        >
-                            <XCircle
-                                size={18}
-                                weight="fill"
-                                className="mt-0.5"
-                            />
-                            {status.msg}
-                        </div>
-                    )}
-                </div>
-            </form>
-        </div>
+            {/* Direct mail link below form */}
+            <div className="mt-6 text-center">
+                <a
+                    href="mailto:info@ludoaloserij.nl"
+                    className="inline-flex items-center gap-2 text-zinc-500 hover:text-[hsl(var(--primary))] transition-colors text-sm"
+                    data-testid="contact-direct-mail"
+                >
+                    <EnvelopeSimple size={16} weight="bold" />
+                    Of mail direct naar info@ludoaloserij.nl
+                </a>
+            </div>
+        </section>
     );
 };
 
@@ -219,44 +254,27 @@ const ContactCard = () => {
 
 const Footer = () => (
     <footer
-        className="border-t border-zinc-800/80 bg-black mt-20"
+        className="border-t border-zinc-200 bg-zinc-50/50"
         data-testid="site-footer"
     >
-        <div className="container-x max-w-5xl mx-auto py-10 grid sm:grid-cols-3 gap-6 text-sm">
-            <div data-testid="footer-name">
-                <div className="text-[hsl(var(--primary))] font-semibold uppercase tracking-widest text-xs mb-2">
-                    Bedrijf
-                </div>
-                <div className="text-white font-medium">
-                    L.A. Technische Service
-                </div>
-                <div className="text-zinc-400">Ludo Aloserij</div>
+        <div className="container-x max-w-3xl mx-auto py-10 flex flex-col items-center text-center gap-2">
+            <div className="text-zinc-900 font-semibold" data-testid="footer-name">
+                Ludo Aloserij
             </div>
-
-            <div data-testid="footer-kvk">
-                <div className="text-[hsl(var(--primary))] font-semibold uppercase tracking-widest text-xs mb-2">
-                    KvK
-                </div>
-                <div className="text-zinc-200">80568173</div>
+            <a
+                href="mailto:info@ludoaloserij.nl"
+                className="text-zinc-600 hover:text-[hsl(var(--primary))] transition-colors text-sm"
+                data-testid="footer-email"
+            >
+                info@ludoaloserij.nl
+            </a>
+            <div className="text-zinc-500 text-sm" data-testid="footer-kvk">
+                KvK: 80568173
             </div>
-
-            <div data-testid="footer-contact">
-                <div className="text-[hsl(var(--primary))] font-semibold uppercase tracking-widest text-xs mb-2">
-                    Contact
-                </div>
-                <a
-                    href="mailto:info@ludoaloserij.nl"
-                    className="text-zinc-200 hover:text-[hsl(var(--primary))] transition-colors"
-                    data-testid="footer-email"
-                >
-                    info@ludoaloserij.nl
-                </a>
+            <div className="text-xs text-zinc-400 mt-3">
+                © {new Date().getFullYear()} L.A. Technische Service — Alles
+                met Techniek
             </div>
-        </div>
-
-        <div className="border-t border-zinc-900 max-w-5xl mx-auto container-x py-5 text-xs text-zinc-500">
-            © {new Date().getFullYear()} L.A. Technische Service — Alles met
-            Techniek
         </div>
     </footer>
 );
@@ -266,19 +284,13 @@ const Footer = () => (
 function App() {
     return (
         <div
-            className="App relative min-h-screen bg-black"
+            className="App page-bg min-h-screen flex flex-col"
             data-testid="app-root"
         >
-            <HeroVisual />
-
-            <section
-                id="contact"
-                className="relative z-20 container-x max-w-7xl mx-auto -mt-44 md:-mt-52 pb-12"
-                data-testid="contact-section"
-            >
-                <ContactCard />
-            </section>
-
+            <main className="flex-1">
+                <Hero />
+                <Contact />
+            </main>
             <Footer />
         </div>
     );

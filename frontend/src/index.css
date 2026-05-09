@@ -35,7 +35,7 @@
         scroll-behavior: smooth;
     }
     body {
-        @apply bg-black text-zinc-100 antialiased;
+        @apply bg-white text-zinc-900 antialiased;
         font-family: "Inter", system-ui, sans-serif;
     }
     h1,
@@ -43,7 +43,7 @@
     h3,
     h4 {
         font-family: "Poppins", "Inter", sans-serif;
-        font-weight: 800;
+        font-weight: 700;
         letter-spacing: -0.01em;
     }
 }
@@ -69,7 +69,23 @@
 
 @layer components {
     .container-x {
-        @apply px-6 md:px-10 lg:px-16;
+        @apply px-6 md:px-10;
+    }
+
+    /* Subtle warm gradient backdrop reminiscent of orange brand */
+    .page-bg {
+        background:
+            radial-gradient(
+                circle at 50% -10%,
+                rgba(238, 90, 36, 0.08),
+                transparent 55%
+            ),
+            radial-gradient(
+                circle at 90% 110%,
+                rgba(238, 90, 36, 0.06),
+                transparent 50%
+            ),
+            #ffffff;
     }
 
     .btn-primary {
@@ -87,24 +103,23 @@
         transform: none;
     }
 
+    .field-label {
+        @apply block text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500 mb-2;
+    }
+
     .field-input {
-        @apply w-full bg-white border-0 px-5 py-4 text-zinc-900 placeholder:text-zinc-400 transition-all rounded-md;
+        @apply w-full bg-white border border-zinc-200 px-4 py-3.5 text-zinc-900 placeholder:text-zinc-400 transition-all rounded-lg;
         font-size: 0.95rem;
-        box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04);
     }
     .field-input:focus {
         outline: none;
-        box-shadow: 0 0 0 2px hsl(var(--primary));
+        border-color: hsl(var(--primary));
+        box-shadow: 0 0 0 4px rgba(238, 90, 36, 0.12);
     }
 
-    .icon-circle {
-        @apply h-12 w-12 rounded-full bg-[hsl(var(--primary))] text-white flex items-center justify-center shrink-0;
-        box-shadow: 0 6px 18px -6px rgba(238, 90, 36, 0.55);
-    }
-
-    .info-label {
-        @apply text-zinc-900 font-extrabold uppercase tracking-wider text-base;
-        font-family: "Poppins", "Inter", sans-serif;
+    /* tiny accent rule */
+    .accent-rule {
+        @apply inline-block h-1 w-12 bg-[hsl(var(--primary))] rounded-full;
     }
 
     ::selection {
