@@ -35,7 +35,7 @@
         scroll-behavior: smooth;
     }
     body {
-        @apply bg-white text-zinc-900 antialiased;
+        @apply bg-black text-zinc-100 antialiased;
         font-family: "Inter", system-ui, sans-serif;
     }
     h1,
