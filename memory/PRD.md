@@ -1,39 +1,32 @@
-# L.A. Technische Service — Contact Page (Dark)
+# L.A. Technische Service — Contact Page
 
-## Original Problem Statement
-URL provided: https://ludoaloserij.nl/. User pivoted to: alleen een moderne contactpagina, in bedrijfskleur oranje, met behoud van het originele logo. Vervolgens: donkere achtergrond, met logo én slogan "Alles met Techniek" duidelijk zichtbaar (referentiebeeld bij iteratie 3).
-
-## User Persona
-- Ludo Aloserij (eigenaar, ZZP technicus).
-- Bezoekers: potentiële klanten met klus/storing/vraag.
+## Origin
+URL: https://ludoaloserij.nl/. User wil één moderne contactpagina, oranje huisstijl, logo behouden, layout (bijna) 1:1 zoals een aangeleverde referentie-afbeelding (lichte achtergrond, grote zwart-wit industriële foto rechtsboven, oranje organische golfvorm links, witte info-card + grijze formulier-card met oranje SUBMIT pill).
 
 ## Locked Requirements
 - Single page, Nederlands.
-- Originele logo URL behouden (huisstijl/bedrijfskleding) — getoond op witte pill voor zichtbaarheid op donker.
-- Donker thema (#0d0d0f) met oranje (brand-500 #F97316) als accent + organische blob-vormen als sierelement.
-- Slogan "Alles met techniek" prominent: in header naast logo én groot in hero (serif italic).
+- Originele logo URL gebruiken (huisstijl/bedrijfskleding).
+- Slogan "Alles met Techniek" prominent zichtbaar (header).
+- Layout zoals referentie: lichte achtergrond, B&W industriële foto rechts, oranje SVG-golfvorm links, twee cards onderaan (info wit, formulier grijs).
 - Werkend contactformulier opgeslagen in MongoDB.
-- KvK 80568173 + e-mail info@ludoaloserij.nl zichtbaar.
+- Bedrijfsdata: e-mail info@ludoaloserij.nl + KvK 80568173 (geen telefoon/adres beschikbaar — vervangen door E-mail / KvK / Bereikbaarheid).
 
 ## Architecture
 - Backend: FastAPI + Motor (MongoDB), endpoints onder /api.
   - GET  /api/         → health
   - POST /api/contact  → create (Pydantic EmailStr, 201)
   - GET  /api/contact  → list (geen _id leak)
-- Frontend: React (CRA + Tailwind). Single page: Header, Hero, Contact, Footer. Decoratieve orange blobs achter content.
+- Frontend: React (CRA + Tailwind). Single page.
 
 ## Implementation Log
-- 2026-05-09 — Iteration 1: Industrial dark site (cyaan accent, meerdere secties). 100% backend test pass.
-- 2026-05-09 — Iteration 2: Pivot naar minimalistische licht/oranje contactpagina.
-- 2026-05-09 — Iteration 3: Donker thema + oranje blobs + logo op witte pill + slogan groot in header en hero. Geverifieerd via curl: POST /api/contact → 201.
+- 2026-05-09 Iter 1: Industrial dark site (cyaan, multi-section). 100% backend tests pass.
+- 2026-05-09 Iter 2: Pivot naar minimalistische licht/oranje contactpagina.
+- 2026-05-09 Iter 3: Donker thema + oranje blobs.
+- 2026-05-09 Iter 4 (huidige): Layout 1:1 zoals referentie — lichte achtergrond, B&W foto rechtsboven, oranje SVG golfvorm links, witte info-card (E-MAIL, KVK-NUMMER, BEREIKBAARHEID met oranje cirkel-iconen), grijze formulier-card met "Contacteer ons" titel en oranje pill VERZENDEN-knop. Logo + "L.A. TECHNISCHE SERVICE" / "Alles met Techniek" linksboven duidelijk zichtbaar. Backend POST /api/contact → 201 geverifieerd.
 
 ## Backlog
-- P1: E-mail forwarding bij contactaanvraag (SendGrid/Resend) zodat Ludo notificatie krijgt.
-- P2: Honeypot/rate-limit tegen spam.
+- P1: E-mail forwarding bij iedere contactaanvraag (SendGrid/Resend).
+- P2: Honeypot / rate-limit tegen spam.
 - P2: Mini admin-view om binnengekomen berichten te lezen.
-- P3: SEO meta tags + Open Graph image (gebruik logo).
-- P3: Cookie banner (origineel had wpconsent).
-
-## Next Tasks
-1. (Optioneel) E-mail notificaties.
-2. (Optioneel) Spambeveiliging.
+- P3: SEO meta tags + Open Graph image.
+- P3: Cookie banner.

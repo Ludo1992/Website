@@ -2,15 +2,14 @@ import { useState } from "react";
 import "@/App.css";
 import axios from "axios";
 import {
+    Phone,
     EnvelopeSimple,
     IdentificationCard,
+    Clock,
     PaperPlaneTilt,
     CircleNotch,
     CheckCircle,
     XCircle,
-    ArrowUpRight,
-    Clock,
-    Wrench,
 } from "@phosphor-icons/react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -19,173 +18,159 @@ const API = `${BACKEND_URL}/api`;
 const LOGO_URL =
     "https://ludoaloserij.nl/wp-content/uploads/2023/11/Color-logo-no-background-1024x627.png";
 
-// ---------------- Decorative blobs ----------------
+// Black & white industrial / technical hero image
+const HERO_IMG =
+    "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1600&q=80";
 
-const Blobs = () => (
-    <>
-        {/* Big left blob (top) */}
-        <div
-            className="blob"
-            style={{
-                width: "640px",
-                height: "640px",
-                top: "-180px",
-                left: "-260px",
-                opacity: 0.55,
-            }}
-        />
-        {/* Right side blob (mid) */}
-        <div
-            className="blob"
-            style={{
-                width: "520px",
-                height: "520px",
-                top: "30%",
-                right: "-200px",
-                opacity: 0.35,
-            }}
-        />
-        {/* Bottom left small */}
-        <div
-            className="blob"
-            style={{
-                width: "360px",
-                height: "360px",
-                bottom: "-120px",
-                left: "10%",
-                opacity: 0.25,
-            }}
-        />
-    </>
-);
+// ---------------- Top: logo + slogan ----------------
 
-// ---------------- Header ----------------
-
-const Header = () => (
-    <header
-        className="relative z-30 backdrop-blur-md bg-zinc-950/40 border-b border-white/5"
+const TopBar = () => (
+    <div
+        className="relative z-30 container-x max-w-7xl mx-auto pt-8 md:pt-10"
         data-testid="site-header"
     >
-        <div className="container-x h-24 flex items-center justify-between max-w-6xl mx-auto">
-            <a
-                href="#top"
-                className="flex items-center gap-4"
-                data-testid="header-logo-link"
-            >
-                <div className="bg-white rounded-2xl px-4 py-2.5 shadow-[0_8px_28px_-8px_rgba(249,115,22,0.45)] ring-1 ring-brand-500/20">
-                    <img
-                        src={LOGO_URL}
-                        alt="L.A. Technische Service"
-                        className="h-11 md:h-12 w-auto"
-                        data-testid="header-logo"
-                    />
-                </div>
-                <div className="hidden sm:flex flex-col leading-tight">
-                    <span className="font-serif italic text-2xl md:text-[28px] text-white">
-                        Alles met techniek
-                    </span>
-                    <span className="text-[0.65rem] font-mono uppercase tracking-[0.28em] text-brand-400 mt-1">
-                        L.A. Technische Service
-                    </span>
-                </div>
-            </a>
-            <a
-                href="#contact"
-                className="hidden md:inline-flex btn-primary"
-                data-testid="header-cta"
-            >
-                Neem contact op
-                <ArrowUpRight size={16} weight="bold" />
-            </a>
-        </div>
-    </header>
-);
-
-// ---------------- Hero ----------------
-
-const Hero = () => (
-    <section
-        id="top"
-        className="relative overflow-hidden"
-        data-testid="hero-section"
-    >
-        <div className="absolute inset-0 grid-fade opacity-70 pointer-events-none" />
-
-        <div className="relative container-x max-w-6xl mx-auto pt-16 md:pt-24 pb-12 md:pb-16">
-            <div className="flex items-center gap-3 mb-7">
-                <span className="h-2.5 w-2.5 rounded-full bg-brand-500 animate-pulse" />
-                <span className="eyebrow">
-                    Beschikbaar voor opdrachten
+        <a
+            href="#top"
+            className="inline-flex items-center gap-5"
+            data-testid="header-logo-link"
+        >
+            <img
+                src={LOGO_URL}
+                alt="L.A. Technische Service"
+                className="h-16 md:h-20 w-auto"
+                data-testid="header-logo"
+            />
+            <div className="hidden sm:flex flex-col leading-tight border-l-2 border-[hsl(var(--primary))] pl-5">
+                <span
+                    className="font-[Poppins] font-extrabold text-zinc-900 text-xl md:text-2xl uppercase tracking-tight"
+                    data-testid="header-company"
+                >
+                    L.A. Technische Service
+                </span>
+                <span
+                    className="text-[hsl(var(--primary))] font-semibold text-sm md:text-base mt-0.5"
+                    data-testid="header-slogan"
+                >
+                    Alles met Techniek
                 </span>
             </div>
+        </a>
+    </div>
+);
 
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-                <div>
-                    <h1
-                        className="font-serif text-6xl sm:text-7xl md:text-8xl leading-[0.95] text-white"
-                        data-testid="hero-title"
-                    >
-                        Alles met
-                        <br />
-                        <span className="italic text-brand-500">techniek.</span>
-                    </h1>
-                    <p
-                        className="mt-7 max-w-xl text-base md:text-lg text-zinc-400 leading-relaxed"
-                        data-testid="hero-description"
-                    >
-                        L.A. Technische Service — hands-on technische dienstverlening
-                        door Ludo Aloserij. Heb je een klus, vraag of storing? Stuur
-                        een berichtje en ik neem snel contact met je op.
-                    </p>
-                </div>
+// ---------------- Hero (B&W image right + orange blob left) ----------------
 
-                <div className="hidden md:flex items-center gap-4 pb-2">
-                    <div className="h-px w-16 bg-brand-500" />
-                    <Wrench size={28} weight="duotone" className="text-brand-500" />
-                </div>
-            </div>
+const HeroVisual = () => (
+    <section
+        id="top"
+        className="relative w-full overflow-hidden"
+        data-testid="hero-section"
+    >
+        {/* Right: large B&W industrial image */}
+        <div className="absolute top-0 right-0 w-[58%] md:w-[55%] h-[420px] md:h-[520px] overflow-hidden pointer-events-none">
+            <img
+                src={HERO_IMG}
+                alt="Industriële techniek"
+                className="w-full h-full object-cover grayscale contrast-110 brightness-95"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/10" />
         </div>
+
+        {/* Left: organic orange blob (SVG) */}
+        <div className="absolute top-[180px] -left-10 w-[58%] md:w-[55%] h-[420px] md:h-[480px] pointer-events-none">
+            <svg
+                viewBox="0 0 800 700"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+                className="w-full h-full"
+                aria-hidden="true"
+            >
+                <path
+                    d="M0,80 C140,30 290,90 420,140 C560,195 690,170 800,120 L800,520 C700,490 580,560 440,580 C310,598 170,560 70,610 C30,628 0,640 -10,648 L-10,80 Z"
+                    fill="#EE5A24"
+                />
+                <path
+                    d="M-20,200 C100,170 230,250 360,290 C500,332 620,310 740,270 L760,540 C640,520 510,580 380,590 C250,600 120,560 0,610 L-20,200 Z"
+                    fill="#F2723A"
+                    opacity="0.55"
+                />
+            </svg>
+        </div>
+
+        {/* Spacer to push content below hero visuals */}
+        <div className="h-[380px] md:h-[460px]" />
     </section>
 );
 
-// ---------------- Contact info card ----------------
+// ---------------- Cards row ----------------
 
-const InfoRow = ({ Icon, label, value, href, testid }) => {
-    const Wrapper = href ? "a" : "div";
-    const props = href
-        ? {
-              href,
-              className:
-                  "group flex items-start gap-5 py-5 hover:translate-x-1 transition-transform",
-          }
-        : { className: "flex items-start gap-5 py-5" };
-    return (
-        <Wrapper {...props} data-testid={testid}>
-            <div className="icon-badge">
-                <Icon size={20} weight="bold" />
-            </div>
-            <div className="flex-1 pt-1">
-                <div className="text-xs font-mono uppercase tracking-[0.18em] text-zinc-400 mb-1">
-                    {label}
+const InfoCard = () => (
+    <div
+        className="bg-white rounded-md shadow-[0_25px_60px_-20px_rgba(0,0,0,0.18)] p-8 md:p-12 lg:p-14"
+        data-testid="contact-info-card"
+    >
+        <div className="space-y-12">
+            {/* E-mail */}
+            <a
+                href="mailto:info@ludoaloserij.nl"
+                className="flex items-start gap-5 group"
+                data-testid="contact-info-email"
+            >
+                <div className="icon-circle">
+                    <EnvelopeSimple size={22} weight="fill" />
                 </div>
-                <div className="text-white text-lg font-medium">
-                    {value}
+                <div className="pt-2">
+                    <div className="info-label">E-MAIL</div>
+                    <div className="mt-2 text-zinc-700 text-base group-hover:text-[hsl(var(--primary))] transition-colors">
+                        info@ludoaloserij.nl
+                    </div>
+                </div>
+            </a>
+
+            {/* KvK */}
+            <div
+                className="flex items-start gap-5"
+                data-testid="contact-info-kvk"
+            >
+                <div className="icon-circle">
+                    <IdentificationCard size={22} weight="fill" />
+                </div>
+                <div className="pt-2">
+                    <div className="info-label">KVK-NUMMER</div>
+                    <div className="mt-2 text-zinc-700 text-base">
+                        80568173 — Ludo Aloserij
+                    </div>
                 </div>
             </div>
-            {href && (
-                <ArrowUpRight
-                    size={18}
-                    className="text-zinc-500 group-hover:text-brand-400 mt-2 transition-colors"
-                    weight="bold"
-                />
-            )}
-        </Wrapper>
-    );
-};
 
-// ---------------- Contact Form ----------------
+            {/* Hours */}
+            <div
+                className="flex items-start gap-5"
+                data-testid="contact-info-hours"
+            >
+                <div className="icon-circle">
+                    <Clock size={22} weight="fill" />
+                </div>
+                <div className="pt-2">
+                    <div className="info-label">BEREIKBAARHEID</div>
+                    <div className="mt-2 text-zinc-700 text-base">
+                        Ma – Vr: 08:00 – 18:00
+                        <br />
+                        Reactie binnen 24 uur
+                    </div>
+                </div>
+            </div>
 
-const ContactForm = () => {
+            <div className="pt-2 text-xs text-zinc-400">
+                Hands-on technische dienstverlening.
+            </div>
+        </div>
+    </div>
+);
+
+// ---------------- Form ----------------
+
+const ContactCard = () => {
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -222,222 +207,146 @@ const ContactForm = () => {
     };
 
     return (
-        <form
-            onSubmit={submit}
-            className="space-y-5"
-            data-testid="contact-form"
-            noValidate
+        <div
+            className="bg-zinc-100 rounded-md shadow-[0_25px_60px_-20px_rgba(0,0,0,0.18)] p-8 md:p-12 lg:p-14"
+            data-testid="contact-form-card"
         >
-            <div>
-                <label className="field-label" htmlFor="name">
-                    Volledige naam
-                </label>
+            <h2
+                className="text-zinc-900 text-3xl md:text-4xl font-[Poppins] font-extrabold uppercase tracking-tight text-center mb-8"
+                data-testid="contact-form-title"
+            >
+                Contacteer ons
+            </h2>
+
+            <form
+                onSubmit={submit}
+                className="space-y-4"
+                data-testid="contact-form"
+                noValidate
+            >
                 <input
-                    id="name"
                     required
                     value={form.name}
                     onChange={update("name")}
                     className="field-input"
-                    placeholder="Jouw naam"
+                    placeholder="Volledige naam"
                     autoComplete="name"
                     data-testid="contact-input-name"
                 />
-            </div>
 
-            <div>
-                <label className="field-label" htmlFor="email">
-                    E-mailadres
-                </label>
                 <input
-                    id="email"
                     type="email"
                     required
                     value={form.email}
                     onChange={update("email")}
                     className="field-input"
-                    placeholder="naam@voorbeeld.nl"
+                    placeholder="Geldig e-mailadres"
                     autoComplete="email"
                     data-testid="contact-input-email"
                 />
-            </div>
 
-            <div>
-                <label className="field-label" htmlFor="subject">
-                    Onderwerp
-                </label>
                 <input
-                    id="subject"
                     required
                     value={form.subject}
                     onChange={update("subject")}
                     className="field-input"
-                    placeholder="Waar kan ik mee helpen?"
+                    placeholder="Onderwerp"
                     data-testid="contact-input-subject"
                 />
-            </div>
 
-            <div>
-                <label className="field-label" htmlFor="message">
-                    Bericht
-                </label>
                 <textarea
-                    id="message"
                     required
-                    rows={5}
+                    rows={6}
                     value={form.message}
                     onChange={update("message")}
                     className="field-input resize-none"
-                    placeholder="Vertel kort over je project, klus of vraag..."
+                    placeholder="Bericht"
                     data-testid="contact-input-message"
                 />
-            </div>
 
-            <div className="pt-3">
-                <button
-                    type="submit"
-                    disabled={status.state === "loading"}
-                    className="btn-primary w-full sm:w-auto"
-                    data-testid="contact-submit-button"
-                >
-                    {status.state === "loading" ? (
-                        <>
-                            <CircleNotch
-                                size={16}
-                                className="animate-spin"
-                                weight="bold"
+                <div className="pt-3">
+                    <button
+                        type="submit"
+                        disabled={status.state === "loading"}
+                        className="btn-primary w-full"
+                        data-testid="contact-submit-button"
+                    >
+                        {status.state === "loading" ? (
+                            <>
+                                <CircleNotch
+                                    size={16}
+                                    className="animate-spin"
+                                    weight="bold"
+                                />
+                                Verzenden...
+                            </>
+                        ) : (
+                            <>
+                                Verzenden
+                                <PaperPlaneTilt size={16} weight="fill" />
+                            </>
+                        )}
+                    </button>
+
+                    {status.state === "success" && (
+                        <div
+                            className="mt-4 flex items-start gap-2 text-emerald-700 text-sm"
+                            data-testid="contact-success-message"
+                        >
+                            <CheckCircle
+                                size={18}
+                                weight="fill"
+                                className="mt-0.5"
                             />
-                            Verzenden...
-                        </>
-                    ) : (
-                        <>
-                            Verzenden
-                            <PaperPlaneTilt size={16} weight="fill" />
-                        </>
+                            {status.msg}
+                        </div>
                     )}
-                </button>
-
-                {status.state === "success" && (
-                    <div
-                        className="mt-4 flex items-start gap-2 text-emerald-400 text-sm"
-                        data-testid="contact-success-message"
-                    >
-                        <CheckCircle size={18} weight="fill" className="mt-0.5" />
-                        {status.msg}
-                    </div>
-                )}
-                {status.state === "error" && (
-                    <div
-                        className="mt-4 flex items-start gap-2 text-red-400 text-sm"
-                        data-testid="contact-error-message"
-                    >
-                        <XCircle size={18} weight="fill" className="mt-0.5" />
-                        {status.msg}
-                    </div>
-                )}
-            </div>
-        </form>
+                    {status.state === "error" && (
+                        <div
+                            className="mt-4 flex items-start gap-2 text-red-600 text-sm"
+                            data-testid="contact-error-message"
+                        >
+                            <XCircle
+                                size={18}
+                                weight="fill"
+                                className="mt-0.5"
+                            />
+                            {status.msg}
+                        </div>
+                    )}
+                </div>
+            </form>
+        </div>
     );
 };
-
-// ---------------- Contact section ----------------
-
-const Contact = () => (
-    <section
-        id="contact"
-        className="relative container-x max-w-6xl mx-auto pb-24 md:pb-32 pt-4"
-        data-testid="contact-section"
-    >
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
-            {/* LEFT: contact info */}
-            <div className="lg:col-span-5">
-                <span className="eyebrow">Contact</span>
-                <h2 className="mt-4 font-serif text-4xl md:text-5xl text-white">
-                    Even <span className="italic text-brand-500">kennismaken?</span>
-                </h2>
-                <p className="mt-4 text-zinc-400 leading-relaxed max-w-md">
-                    Vul het formulier in of mail direct. Reactie meestal binnen
-                    24 uur.
-                </p>
-
-                <div className="mt-8 divide-y divide-white/5">
-                    <InfoRow
-                        Icon={EnvelopeSimple}
-                        label="E-mail"
-                        value="info@ludoaloserij.nl"
-                        href="mailto:info@ludoaloserij.nl"
-                        testid="contact-info-email"
-                    />
-                    <InfoRow
-                        Icon={IdentificationCard}
-                        label="KvK-nummer"
-                        value="80568173"
-                        testid="contact-info-kvk"
-                    />
-                    <InfoRow
-                        Icon={Clock}
-                        label="Reactietijd"
-                        value="Binnen 24 uur"
-                        testid="contact-info-hours"
-                    />
-                </div>
-            </div>
-
-            {/* RIGHT: form card */}
-            <div className="lg:col-span-7">
-                <div className="relative bg-zinc-900/60 backdrop-blur-sm border border-white/10 rounded-3xl p-7 md:p-10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
-                    {/* small accent corner */}
-                    <div className="absolute -top-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-brand-500/60 to-transparent" />
-                    <div className="flex items-baseline justify-between mb-6">
-                        <h3 className="font-serif text-3xl md:text-4xl text-white">
-                            Stuur een bericht
-                        </h3>
-                        <span className="eyebrow hidden sm:inline">
-                            01 / Contact
-                        </span>
-                    </div>
-                    <p className="text-sm text-zinc-400 mb-8">
-                        Vul hieronder je gegevens in.
-                    </p>
-                    <ContactForm />
-                </div>
-            </div>
-        </div>
-    </section>
-);
 
 // ---------------- Footer ----------------
 
 const Footer = () => (
     <footer
-        className="relative border-t border-white/5 bg-black/40"
+        className="border-t border-zinc-200 bg-white mt-20"
         data-testid="site-footer"
     >
-        <div className="container-x max-w-6xl mx-auto py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-                <div className="bg-white rounded-xl px-3 py-2 ring-1 ring-brand-500/20">
-                    <img
-                        src={LOGO_URL}
-                        alt="L.A. Technische Service"
-                        className="h-9 w-auto"
-                    />
-                </div>
+        <div className="container-x max-w-7xl mx-auto py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+                <img
+                    src={LOGO_URL}
+                    alt="L.A. Technische Service"
+                    className="h-10 w-auto"
+                />
                 <div className="text-sm text-zinc-500">
-                    <div className="text-white font-medium">
-                        Ludo Aloserij
-                    </div>
-                    <div>KvK: 80568173</div>
+                    Ludo Aloserij · KvK 80568173
                 </div>
             </div>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-zinc-500">
+            <div className="text-sm text-zinc-500">
+                © {new Date().getFullYear()} L.A. Technische Service —{" "}
                 <a
                     href="mailto:info@ludoaloserij.nl"
-                    className="underline-link text-zinc-300 hover:text-brand-400"
+                    className="text-zinc-700 hover:text-[hsl(var(--primary))] underline-offset-4 hover:underline"
                     data-testid="footer-email"
                 >
                     info@ludoaloserij.nl
                 </a>
-                <span className="text-zinc-700">•</span>
-                <span>© {new Date().getFullYear()} L.A. Technische Service</span>
             </div>
         </div>
     </footer>
@@ -447,17 +356,23 @@ const Footer = () => (
 
 function App() {
     return (
-        <div
-            className="App relative min-h-screen overflow-hidden"
-            data-testid="app-root"
-        >
-            <Blobs />
-            <div className="relative z-10">
-                <Header />
-                <Hero />
-                <Contact />
-                <Footer />
-            </div>
+        <div className="App relative min-h-screen bg-white" data-testid="app-root">
+            <TopBar />
+            <HeroVisual />
+
+            {/* Cards overlap the hero visual */}
+            <section
+                id="contact"
+                className="relative z-20 container-x max-w-7xl mx-auto -mt-44 md:-mt-52 pb-12"
+                data-testid="contact-section"
+            >
+                <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
+                    <InfoCard />
+                    <ContactCard />
+                </div>
+            </section>
+
+            <Footer />
         </div>
     );
 }
