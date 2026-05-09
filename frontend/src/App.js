@@ -7,6 +7,8 @@ import {
     CheckCircle,
     XCircle,
     EnvelopeSimple,
+    User,
+    IdentificationCard,
 } from "@phosphor-icons/react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -247,26 +249,54 @@ const Contact = () => {
 
 // ---------------- Footer ----------------
 
-const Footer = () => (
-    <footer
-        className="border-t border-white/10 bg-black/60"
-        data-testid="site-footer"
-    >
-        <div className="container-x max-w-3xl mx-auto py-10 flex flex-col items-center text-center gap-2">
-            <div className="text-white font-semibold" data-testid="footer-name">
-                Ludo Aloserij
-            </div>
+const FooterItem = ({ Icon, children, href, testid }) => {
+    const content = (
+        <span className="inline-flex items-center gap-3">
+            <span className="inline-flex items-center justify-center h-8 w-8 bg-[hsl(var(--primary))] rounded-md shrink-0">
+                <Icon size={16} weight="bold" className="text-white" />
+            </span>
+            <span className="text-zinc-200 text-sm md:text-base font-medium">
+                {children}
+            </span>
+        </span>
+    );
+    if (href) {
+        return (
             <a
-                href="mailto:info@ludoaloserij.nl"
-                className="text-zinc-300 hover:text-[hsl(var(--primary))] transition-colors text-sm"
-                data-testid="footer-email"
+                href={href}
+                className="hover:text-[hsl(var(--primary))] transition-colors group"
+                data-testid={testid}
             >
-                info@ludoaloserij.nl
+                {content}
             </a>
-            <div className="text-zinc-400 text-sm" data-testid="footer-kvk">
-                KVK: 80568173
+        );
+    }
+    return <div data-testid={testid}>{content}</div>;
+};
+
+const Footer = () => (
+    <footer className="bg-black" data-testid="site-footer">
+        {/* Orange divider bar */}
+        <div className="h-2 bg-[hsl(var(--primary))]" />
+
+        <div className="container-x max-w-5xl mx-auto py-8 md:py-10">
+            <div className="flex flex-wrap items-center justify-center md:justify-between gap-6 md:gap-10">
+                <FooterItem Icon={User} testid="footer-name">
+                    Ludo Aloserij
+                </FooterItem>
+                <FooterItem
+                    Icon={EnvelopeSimple}
+                    href="mailto:info@ludoaloserij.nl"
+                    testid="footer-email"
+                >
+                    info@ludoaloserij.nl
+                </FooterItem>
+                <FooterItem Icon={IdentificationCard} testid="footer-kvk">
+                    KVK: 80568173
+                </FooterItem>
             </div>
-            <div className="text-xs text-zinc-500 mt-3">
+
+            <div className="text-center text-xs text-zinc-500 mt-6">
                 © {new Date().getFullYear()} L.A. Technische Service — Alles
                 met Techniek
             </div>

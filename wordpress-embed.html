@@ -250,34 +250,55 @@
   }
 
   .lats-footer {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    background: rgba(0,0,0,0.4);
-    padding: 40px 24px;
-    text-align: center;
+    background: #000000;
   }
-  .lats-footer-name {
-    color: #ffffff;
-    font-weight: 600;
-    margin-bottom: 8px;
+  .lats-footer-bar {
+    height: 8px;
+    background: var(--lats-orange);
   }
-  .lats-footer a {
-    color: var(--lats-muted-2);
+  .lats-footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 28px;
+  }
+  .lats-footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  @media (min-width: 768px) {
+    .lats-footer-row { justify-content: space-between; gap: 40px; }
+    .lats-footer-inner { padding: 40px 24px 32px; }
+  }
+  .lats-footer-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #e5e7eb;
+    font-size: 0.9rem;
     text-decoration: none;
+    font-weight: 500;
     transition: color 0.2s;
-    display: block;
-    font-size: 0.875rem;
-    margin-bottom: 8px;
   }
-  .lats-footer a:hover { color: var(--lats-orange); }
-  .lats-footer-kvk {
-    color: var(--lats-muted);
-    font-size: 0.875rem;
-    margin-bottom: 12px;
+  .lats-footer-item.is-link:hover { color: var(--lats-orange); }
+  .lats-footer-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--lats-orange);
+    border-radius: 6px;
+    flex-shrink: 0;
   }
+  .lats-footer-icon svg { width: 16px; height: 16px; color: #ffffff; }
   .lats-footer-copyright {
+    text-align: center;
     color: #6b7280;
     font-size: 0.75rem;
-    margin-top: 16px;
+    margin-top: 24px;
   }
 
   /* Google fonts */
@@ -364,10 +385,39 @@
 
   <!-- FOOTER -->
   <footer class="lats-footer">
-    <div class="lats-footer-name">Ludo Aloserij</div>
-    <a href="mailto:info@ludoaloserij.nl">info@ludoaloserij.nl</a>
-    <div class="lats-footer-kvk">KVK: 80568173</div>
-    <div class="lats-footer-copyright">© 2026 L.A. Technische Service — Alles met Techniek</div>
+    <div class="lats-footer-bar"></div>
+    <div class="lats-footer-inner">
+      <div class="lats-footer-row">
+        <div class="lats-footer-item">
+          <span class="lats-footer-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.34 0-10 1.67-10 5v3h20v-3c0-3.33-6.66-5-10-5z"/>
+            </svg>
+          </span>
+          <span>Ludo Aloserij</span>
+        </div>
+
+        <a href="mailto:info@ludoaloserij.nl" class="lats-footer-item is-link">
+          <span class="lats-footer-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </span>
+          <span>info@ludoaloserij.nl</span>
+        </a>
+
+        <div class="lats-footer-item">
+          <span class="lats-footer-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zM4 6h16v2H4V6zm6 4h2v8h-2v-8zm-4 0h2v8H6v-8zm8 0h2v8h-2v-8zm4 0h2v8h-2v-8z"/>
+            </svg>
+          </span>
+          <span>KVK: 80568173</span>
+        </div>
+      </div>
+
+      <div class="lats-footer-copyright">© 2026 L.A. Technische Service — Alles met Techniek</div>
+    </div>
   </footer>
 
 </div>
