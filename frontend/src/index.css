@@ -4,25 +4,25 @@
 
 @layer base {
     :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 9%;
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 9%;
-        --primary: 17 88% 50%;
+        --background: 0 0% 4%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 8%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 8%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 17 88% 53%;
         --primary-foreground: 0 0% 100%;
-        --secondary: 0 0% 96%;
-        --secondary-foreground: 0 0% 9%;
-        --muted: 0 0% 96%;
-        --muted-foreground: 0 0% 40%;
-        --accent: 17 88% 50%;
+        --secondary: 0 0% 14%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14%;
+        --muted-foreground: 0 0% 65%;
+        --accent: 17 88% 53%;
         --accent-foreground: 0 0% 100%;
         --destructive: 0 84% 60%;
         --destructive-foreground: 0 0% 100%;
-        --border: 0 0% 90%;
-        --input: 0 0% 90%;
-        --ring: 17 88% 50%;
+        --border: 0 0% 16%;
+        --input: 0 0% 16%;
+        --ring: 17 88% 53%;
         --radius: 0.5rem;
     }
 }
@@ -35,8 +35,9 @@
         scroll-behavior: smooth;
     }
     body {
-        @apply bg-white text-zinc-900 antialiased;
+        @apply bg-black text-zinc-100 antialiased;
         font-family: "Inter", system-ui, sans-serif;
+        background-color: #0a0a0a;
     }
     h1,
     h2,
@@ -72,30 +73,35 @@
         @apply px-6 md:px-10;
     }
 
-    /* Subtle warm gradient backdrop reminiscent of orange brand */
+    /* Dark page background with orange accents */
     .page-bg {
         background:
             radial-gradient(
-                circle at 50% -10%,
-                rgba(238, 90, 36, 0.08),
-                transparent 55%
+                circle at 20% -10%,
+                rgba(238, 90, 36, 0.22),
+                transparent 45%
             ),
             radial-gradient(
                 circle at 90% 110%,
-                rgba(238, 90, 36, 0.06),
+                rgba(238, 90, 36, 0.18),
                 transparent 50%
             ),
-            #ffffff;
+            radial-gradient(
+                circle at 50% 50%,
+                rgba(238, 90, 36, 0.04),
+                transparent 60%
+            ),
+            #0a0a0a;
     }
 
     .btn-primary {
         @apply inline-flex items-center justify-center gap-2 bg-[hsl(var(--primary))] text-white font-semibold px-8 py-4 rounded-full text-sm tracking-wide uppercase transition-all duration-200;
-        box-shadow: 0 8px 24px -8px rgba(238, 90, 36, 0.5);
+        box-shadow: 0 8px 28px -6px rgba(238, 90, 36, 0.55);
     }
     .btn-primary:hover {
-        background: #d94a18;
+        background: #f0651f;
         transform: translateY(-1px);
-        box-shadow: 0 12px 30px -10px rgba(238, 90, 36, 0.65);
+        box-shadow: 0 14px 36px -8px rgba(238, 90, 36, 0.7);
     }
     .btn-primary:disabled {
         opacity: 0.6;
@@ -104,20 +110,20 @@
     }
 
     .field-label {
-        @apply block text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500 mb-2;
+        @apply block text-xs font-semibold uppercase tracking-[0.14em] text-zinc-400 mb-2;
     }
 
     .field-input {
-        @apply w-full bg-white border border-zinc-200 px-4 py-3.5 text-zinc-900 placeholder:text-zinc-400 transition-all rounded-lg;
+        @apply w-full bg-white/[0.04] border border-white/10 px-4 py-3.5 text-white placeholder:text-zinc-500 transition-all rounded-lg;
         font-size: 0.95rem;
     }
     .field-input:focus {
         outline: none;
         border-color: hsl(var(--primary));
-        box-shadow: 0 0 0 4px rgba(238, 90, 36, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 0 0 4px rgba(238, 90, 36, 0.18);
     }
 
-    /* tiny accent rule */
     .accent-rule {
         @apply inline-block h-1 w-12 bg-[hsl(var(--primary))] rounded-full;
     }
@@ -125,5 +131,17 @@
     ::selection {
         background: #fb923c;
         color: #111;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #2a2a2e;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ee5a24;
     }
 }

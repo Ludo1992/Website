@@ -23,13 +23,15 @@ const Hero = () => (
         className="container-x max-w-3xl mx-auto pt-20 md:pt-28 pb-12 text-center"
         data-testid="hero-section"
     >
-        <img
-            src={LOGO_URL}
-            alt="L.A. Technische Service"
-            className="mx-auto h-32 md:h-40 w-auto"
-            data-testid="hero-logo"
-        />
-        <div className="mt-8 flex items-center justify-center gap-3">
+        <div className="inline-block bg-white rounded-3xl px-8 py-6 md:px-10 md:py-8 ring-1 ring-[hsl(var(--primary))]/30 shadow-[0_20px_60px_-15px_rgba(238,90,36,0.4)]">
+            <img
+                src={LOGO_URL}
+                alt="L.A. Technische Service"
+                className="mx-auto h-28 md:h-36 w-auto"
+                data-testid="hero-logo"
+            />
+        </div>
+        <div className="mt-10 flex items-center justify-center gap-3">
             <span className="accent-rule" />
             <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--primary))]">
                 L.A. Technische Service
@@ -37,19 +39,11 @@ const Hero = () => (
             <span className="accent-rule" />
         </div>
         <h1
-            className="mt-5 font-[Poppins] font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-zinc-900"
+            className="mt-5 font-[Poppins] font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-white"
             data-testid="hero-slogan"
         >
             Alles met <span className="text-[hsl(var(--primary))]">Techniek</span>
         </h1>
-        <p
-            className="mt-5 text-zinc-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed"
-            data-testid="hero-description"
-        >
-            Hands-on technische dienstverlening door Ludo Aloserij. Heb je een
-            klus, vraag of storing? Vul het formulier in en ik neem snel
-            contact met je op.
-        </p>
     </section>
 );
 
@@ -98,16 +92,16 @@ const Contact = () => {
             data-testid="contact-section"
         >
             <div className="text-center mb-10">
-                <h2 className="font-[Poppins] font-bold text-3xl md:text-4xl text-zinc-900">
+                <h2 className="font-[Poppins] font-bold text-3xl md:text-4xl text-white">
                     Contact
                 </h2>
-                <p className="mt-3 text-zinc-500">
+                <p className="mt-3 text-zinc-400">
                     Vul hieronder uw gegevens in
                 </p>
             </div>
 
             <div
-                className="bg-white border border-zinc-200 rounded-2xl shadow-[0_20px_60px_-25px_rgba(238,90,36,0.25)] p-7 md:p-10"
+                className="bg-zinc-900/60 backdrop-blur-sm border border-white/10 rounded-2xl shadow-[0_30px_80px_-25px_rgba(238,90,36,0.35)] p-7 md:p-10"
                 data-testid="contact-form-card"
             >
                 <form
@@ -239,7 +233,7 @@ const Contact = () => {
             <div className="mt-6 text-center">
                 <a
                     href="mailto:info@ludoaloserij.nl"
-                    className="inline-flex items-center gap-2 text-zinc-500 hover:text-[hsl(var(--primary))] transition-colors text-sm"
+                    className="inline-flex items-center gap-2 text-zinc-400 hover:text-[hsl(var(--primary))] transition-colors text-sm"
                     data-testid="contact-direct-mail"
                 >
                     <EnvelopeSimple size={16} weight="bold" />
@@ -254,24 +248,24 @@ const Contact = () => {
 
 const Footer = () => (
     <footer
-        className="border-t border-zinc-200 bg-zinc-50/50"
+        className="border-t border-white/10 bg-black/60"
         data-testid="site-footer"
     >
         <div className="container-x max-w-3xl mx-auto py-10 flex flex-col items-center text-center gap-2">
-            <div className="text-zinc-900 font-semibold" data-testid="footer-name">
+            <div className="text-white font-semibold" data-testid="footer-name">
                 Ludo Aloserij
             </div>
             <a
                 href="mailto:info@ludoaloserij.nl"
-                className="text-zinc-600 hover:text-[hsl(var(--primary))] transition-colors text-sm"
+                className="text-zinc-300 hover:text-[hsl(var(--primary))] transition-colors text-sm"
                 data-testid="footer-email"
             >
                 info@ludoaloserij.nl
             </a>
-            <div className="text-zinc-500 text-sm" data-testid="footer-kvk">
+            <div className="text-zinc-400 text-sm" data-testid="footer-kvk">
                 KvK: 80568173
             </div>
-            <div className="text-xs text-zinc-400 mt-3">
+            <div className="text-xs text-zinc-500 mt-3">
                 © {new Date().getFullYear()} L.A. Technische Service — Alles
                 met Techniek
             </div>
