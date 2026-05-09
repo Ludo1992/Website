@@ -1,0 +1,164 @@
+{
+  "theme": "dark",
+  "archetype": "Swiss & High-Contrast (Archetype 4 with Technical/Industrial Twist)",
+  "vibe": "Industrial, engineered, precise, workshop, blueprint, raw textures. Trustworthy and hands-on Dutch technician.",
+  "colors": {
+    "background": "#0C0F12",
+    "surface": "#13171C",
+    "surface_glass": "rgba(19, 23, 28, 0.7)",
+    "primary": "#00E5FF",
+    "primary_foreground": "#000000",
+    "secondary": "#2563EB",
+    "accent_warning": "#EAB308",
+    "text_main": "#F8FAFC",
+    "text_muted": "#94A3B8",
+    "border": "rgba(255, 255, 255, 0.1)"
+  },
+  "typography": {
+    "headings": {
+      "family": "Chivo, sans-serif",
+      "weight": "font-black",
+      "tracking": "tracking-tighter",
+      "note": "Never use Inter for headings. Keep it bold and industrial."
+    },
+    "mono_accents": {
+      "family": "JetBrains Mono, monospace",
+      "weight": "font-medium",
+      "tracking": "tracking-widest",
+      "transform": "uppercase",
+      "usage": "Overlines, labels, small stats, button text"
+    },
+    "body": {
+      "family": "IBM Plex Sans, sans-serif",
+      "weight": "font-normal",
+      "line_height": "leading-relaxed"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter",
+      "h2": "text-3xl sm:text-4xl tracking-tight",
+      "h3": "text-xl sm:text-2xl",
+      "body": "text-base text-slate-400",
+      "label": "text-xs tracking-[0.2em] text-cyan-400 font-mono uppercase"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Grid Borders (The 'Technical' Look). Expose the skeleton. Sharp edges, visible grid lines.",
+    "container_padding": "px-6 md:px-12 lg:px-24",
+    "section_spacing": "py-24 md:py-32",
+    "border_radius": "rounded-none",
+    "surface_strategy": "Containers have border-collapse style layouts. Items have border-r border-b border-border/40."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-cyan-400 text-black font-mono uppercase tracking-wider text-sm px-8 py-4 hover:bg-cyan-300 transition-colors rounded-none border border-cyan-400",
+      "secondary": "bg-transparent text-white font-mono uppercase tracking-wider text-sm px-8 py-4 hover:bg-white/5 transition-colors rounded-none border border-white/20"
+    },
+    "cards": {
+      "style": "bg-[#13171C] border border-white/10 p-8 rounded-none hover:border-cyan-400/50 transition-colors group",
+      "hover_effect": "Add subtle cyan drop-shadow or a 1px inner glow on hover."
+    },
+    "forms": {
+      "inputs": "bg-transparent border-b border-white/20 rounded-none px-0 py-3 text-white focus:border-cyan-400 focus:ring-0 transition-colors font-mono text-sm placeholder:text-slate-600",
+      "labels": "text-xs font-mono text-slate-400 uppercase tracking-widest mb-2 block"
+    },
+    "navigation": {
+      "style": "fixed w-full top-0 z-50 backdrop-blur-xl bg-[#0C0F12]/80 border-b border-white/10",
+      "links": "font-mono text-sm uppercase text-slate-300 hover:text-cyan-400 transition-colors"
+    }
+  },
+  "content_structure": {
+    "language": "nl",
+    "sections": [
+      {
+        "id": "hero",
+        "title": "L.A. Technische Service",
+        "subtitle": "Alles met Techniek",
+        "description": "Betrouwbare, industriële en technische oplossingen voor installatie, onderhoud en reparatie. Uw partner in elektrotechniek en mechanica.",
+        "cta": "Neem Contact Op"
+      },
+      {
+        "id": "services",
+        "heading": "Onze Diensten",
+        "label": "Wat wij doen",
+        "items": [
+          {
+            "title": "Elektrotechniek",
+            "description": "Aanleg, onderhoud en reparatie van industriële en residentiële elektrische installaties."
+          },
+          {
+            "title": "Mechanica",
+            "description": "Precisiewerk in mechanisch onderhoud, machine-reparaties en constructiewerken."
+          },
+          {
+            "title": "Installatie",
+            "description": "Vakkundige installatie van technische systemen, netwerken en apparatuur."
+          },
+          {
+            "title": "Onderhoud",
+            "description": "Periodiek en preventief onderhoud om stilstand en defecten te voorkomen."
+          }
+        ]
+      },
+      {
+        "id": "about",
+        "heading": "Ludo Aloserij",
+        "label": "Over Ons",
+        "description": "Met een passie voor alles wat met techniek te maken heeft, levert Ludo Aloserij hands-on, no-nonsense technische diensten. Van complexe industriële storingen tot nauwkeurig mechanisch werk—kwaliteit en betrouwbaarheid staan voorop."
+      },
+      {
+        "id": "projects",
+        "heading": "Recente Projecten",
+        "label": "Portfolio",
+        "description": "Een blik op ons werk in de praktijk. Complexe problemen vragen om technische precisie."
+      },
+      {
+        "id": "contact",
+        "heading": "Contacteer Ons",
+        "label": "Direct Contact",
+        "form_fields": ["Volledige naam", "E-mail", "Onderwerp", "Bericht"],
+        "submit_button": "Verzenden"
+      }
+    ],
+    "footer": {
+      "owner": "Ludo Aloserij",
+      "email": "info@ludoaloserij.nl",
+      "kvk": "Kvk: 80568173",
+      "slogan": "Alles met Techniek"
+    }
+  },
+  "media": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1675976942582-0272a67c6f21?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwyfHxlbGVjdHJpY2FsJTIwcmVwYWlyJTIwZGFya3xlbnwwfHx8fDE3NzgzMjMzODF8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Electrical panel and technical wires",
+      "usage": "Hero section background with a heavy dark overlay (bg-[#0C0F12]/80 or gradient to transparent) so text remains fully legible."
+    },
+    "about_image": {
+      "url": "https://images.unsplash.com/photo-1748347568194-c8cd8edd27da?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHw0fHxpbmR1c3RyaWFsJTIwdGVjaG5pY2lhbiUyMHdvcmtpbmd8ZW58MHx8fHwxNzc4MzIzMzgxfDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Ludo Aloserij working on industrial machinery",
+      "usage": "Use in the About section. Apply a grayscale filter (grayscale) with a slight cyan tint mix-blend-mode for an industrial look."
+    },
+    "project_images": [
+      {
+        "url": "https://images.pexels.com/photos/34054471/pexels-photo-34054471.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "alt": "Technician crouching to repair industrial machinery"
+      },
+      {
+        "url": "https://images.pexels.com/photos/35290669/pexels-photo-35290669.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "alt": "Technician using a power drill indoors"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1660400696694-d9a2dcf0c3e5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwzfHxlbGVjdHJpY2FsJTIwcmVwYWlyJTIwZGFya3xlbnwwfHx8fDE3NzgzMjMzODF8MA&ixlib=rb-4.1.0&q=85",
+        "alt": "Complex machinery with electrical wires"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install specific fonts via next/font or standard import: Chivo (headings), JetBrains Mono (monospace elements), IBM Plex Sans (body text).",
+    "Use Phosphor Icons (@phosphor-icons/react) for sharp, technical iconography. Ensure to install using: yarn add @phosphor-icons/react",
+    "Keep all borders sharp (rounded-none). The design must feel like a structured technical blueprint.",
+    "Implement the contact form using Shadcn UI components but heavily override them to match the dark industrial 'Grid Border' aesthetic (no soft shadows, only 1px solid borders).",
+    "Ensure the hero overlay has high contrast. The image should be visible but must not conflict with the H1.",
+    "Add data-testid attributes to all interactive elements for robust testing.",
+    "Apply 'Generous Spacing Philosophy': Massive padding between sections (py-24 or py-32)."
+  ]
+}
