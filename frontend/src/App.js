@@ -91,7 +91,7 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="container-x max-w-2xl mx-auto pb-20"
+            className="container-x max-w-2xl mx-auto pb-20 pt-10 md:pt-16"
             data-testid="contact-section"
         >
             <div className="text-center mb-10">
@@ -266,7 +266,7 @@ const Footer = () => (
                 info@ludoaloserij.nl
             </a>
             <div className="text-zinc-400 text-sm" data-testid="footer-kvk">
-                KvK: 80568173
+                KVK: 80568173
             </div>
             <div className="text-xs text-zinc-500 mt-3">
                 © {new Date().getFullYear()} L.A. Technische Service — Alles
